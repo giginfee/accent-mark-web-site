@@ -3,30 +3,52 @@ let questionMark= document.getElementById("question-mark")
 let rule= document.getElementById("rule")
 let animationDuration=400
 
-hint.addEventListener("mouseenter", (e)=>{
-    changeOpacity(questionMark, animationDuration, 1)
-    setTimeout(()=>{
-        questionMark.className+=" hidden";
-        rule.classList.toggle("hidden");
-        changeOpacity(rule, animationDuration/2, 0)
-    }, animationDuration)
+hint.addEventListener("mouseenter", mouseOver)
+hint.addEventListener("mouseleave", mouseOut)
 
+let timers =[]
+function mouseOver(){
+    clearAllTimers()
+    questionMark.style.opacity = "1";
+    rule.style.opacity = "0";
+    rule.style.display = "none";
+    questionMark.style.display = "block";
+    timers.push(changeOpacity(questionMark, animationDuration/2, 1))
+    timers.push( setTimeout(()=>{
+        questionMark.style.display = "none";
+        rule.style.display = "block";
 
+        timers.push(changeOpacity(rule, animationDuration/2, 0))
 
+    }, animationDuration))
 
-})
-hint.addEventListener("mouseleave", (e)=>{
-        changeOpacity(rule, animationDuration / 7, 1)
-        setTimeout(() => {
-            rule.className+=" hidden";
-            questionMark.classList.toggle("hidden");
-        }, animationDuration / 3)
+}
+function mouseOut(){
+    clearAllTimers()
+    questionMark.style.opacity = "0";
+    rule.style.opacity = "1";
+    questionMark.style.display = "none";
+    rule.style.display = "block";
 
-        setTimeout(() => {
-            changeOpacity(questionMark, animationDuration, 0)
-        }, animationDuration)
+    timers.push(changeOpacity(rule, animationDuration / 7, 1))
+    timers.push(setTimeout(() => {
+        questionMark.style.display = " block ";
+        rule.style.display = "none";
+    }, animationDuration / 3))
 
-})
+    timers.push(setTimeout(() => {
+        timers.push(changeOpacity(questionMark, animationDuration/2, 0))
+
+    }, animationDuration))
+
+}
+
+function clearAllTimers(){
+    timers.forEach(x=> {
+        clearTimeout(x);
+        clearInterval(x);
+    })
+}
 
 function changeOpacity(div, duration, opacityStart) {
     let opacity = opacityStart;
@@ -52,4 +74,5 @@ function changeOpacity(div, duration, opacityStart) {
         clearInterval(intervalId);
         div.style.opacity = (opacityStart ===0)?1:0;
     }, duration);
+    return intervalId
 }
