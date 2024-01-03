@@ -17,11 +17,12 @@ html,body{
   color: #383838;
 }
 body{
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   background-color: #ffffff;
 
 }
 #app {
+  padding-top: 10px;
   min-width: 500px;
   background-color: #f6f6f6;
   width: 75%;
