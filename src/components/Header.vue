@@ -61,16 +61,17 @@ export default {
     flex-direction: row;
 }
 .header-option{
+    width:80px;
     font-size: 14px;
     display: flex;
+    font-weight: 400;
     margin-right: 7%;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s;
+    transition: transform 0.3s, font-weight 0.1s;
 }
 .header-option:hover{
     font-weight: 500;
-    margin-right: 69px;
     transform: translateY(-10%);
 
 }

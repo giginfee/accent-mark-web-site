@@ -1,5 +1,6 @@
 <template>
-    <div @mouseenter="mouseOver" @mouseleave="mouseOut" class="hint-block">
+    <div @mouseenter="mouseOver" @mouseleave="mouseOut" class="hint-block" v-bind:class="{'hint-block-inactive': rule===undefined,'hint-block-active': rule!==undefined}" >
+        <div class="hint-pop-up">Переглядати правила у режимі тренування можуть лише зареєстровані користувачі</div>
         <div id="question-mark" ref="question-mark">?</div>
         <div id="rule" ref="rule" class="hidden">{{rule}}</div>
     </div>
@@ -14,11 +15,12 @@ export default {
     props:{
         rule:{
             type:String,
-            required:true
         }
     },
     methods:{
         mouseOver(){
+            if(!this.rule)
+                return
             this.clearAllTimers()
             this.$refs["question-mark"].style.opacity = "1";
             this.$refs.rule.style.opacity = "0";
@@ -35,6 +37,8 @@ export default {
 
         },
         mouseOut(){
+            if(!this.rule)
+                return
             this.clearAllTimers()
             this.$refs["question-mark"].style.opacity = "0";
             this.$refs.rule.style.opacity = "1";
@@ -120,9 +124,32 @@ export default {
     transition: min-height 0.5s, flex 0.5s ;
     max-height: fit-content;
     flex:0;
+    position: relative;
+}
+.hint-block-inactive:hover .hint-pop-up{
+    display: block;
+    opacity:1;
 }
 
-.hint-block:hover{
+.hint-pop-up{
+    display: none;
+    border: #89ADC7 1px solid;
+    border-radius: 15px;
+    opacity: 0;
+    top:-250%;
+    left:-100%;
+    width: 250%;
+    min-width: 100px;
+    padding: 10px;
+    font-weight: 400;
+    position: absolute;
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+    color: #282828;
+    transition: opacity 0.3s;
+}
+
+.hint-block-active:hover{
     text-align: start;
     box-sizing: border-box;
     cursor: pointer;

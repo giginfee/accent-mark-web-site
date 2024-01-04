@@ -1,20 +1,34 @@
 <template>
     <div class="progress-line">
-        <div class="blue-progress-line">
-            <div class="point corner-point start-point green"> </div>
-            <div id="point25" class="point small-point point25 green"> </div>
-            <div id="point50"  class="point small-point point50 "> </div>
-            <div id="point75" class="point small-point point75 "> </div>
-            <div id="end-point" class="point corner-point end-point"></div>
+        <div class="progress-line blue-progress-line">
+            <div class="point corner-point start-point green" > </div>
+            <div id="point25" class="point small-point point25 " v-bind:class="{ green: progress>=25 }"> </div>
+            <div id="point50"  class="point small-point point50 " v-bind:class="{ green: progress>50 }"> </div>
+            <div id="point75" class="point small-point point75 " v-bind:class="{ green: progress>=75 }"> </div>
+            <div id="end-point" class="point corner-point end-point" v-bind:class="{ green: progress===100 }"></div>
         </div>
-        <div class="green-progress-line">
+        <div class="progress-line green-progress-line" ref="line" >
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "ProgressLine"
+    name: "ProgressLine",
+    props:{
+        progress:{
+            type:Number,
+            required:true
+        }
+    },
+    methods: {
+        changeWidth(e) {
+            this.$refs.line.style.width = this.progress+'%';
+        }
+    },
+    updated() {
+        this.changeWidth()
+    }
 }
 </script>
 
@@ -55,19 +69,19 @@ export default {
     right: 0;
 }
 .blue-progress-line{
-    position: relative;
     border-bottom: 4px solid #BDD9EC;
-    border-radius: 3px;
     margin: 30px 0;
+}
+.progress-line{
+    position: relative;
+    border-radius: 3px;
 
 }
-.green-progress-line{
-    position: relative;
-    border-bottom: 4px solid #3EBC33;
-    border-radius: 3px;
-    margin: -34px 0 30px 0;
-    width: 27%;
 
+.green-progress-line{
+    border-bottom: 4px solid #3EBC33;
+    margin: -34px 0 30px 0;
+    width: 0;
 }
 .progress-line{
     position: relative;

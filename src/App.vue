@@ -4,10 +4,11 @@ import Logo from "@/components/Logo.vue";
 import Header from "@/components/Header.vue";
 import ProgressLine from "@/components/ProgressLine.vue";
 import WordCard from "@/components/WordCard.vue";
+import TrainingSection from "@/components/TrainingSection.vue";
 export default {
     name: "App",
     components:{
-        WordList,Header,Logo,ProgressLine,WordCard
+        WordList,Header,Logo,ProgressLine,WordCard,TrainingSection
     }
 
 }
@@ -20,7 +21,7 @@ export default {
     </div>
     <div class="right-side">
         <Header></Header>
-
+        <TrainingSection></TrainingSection>
     </div>
 
 </template>

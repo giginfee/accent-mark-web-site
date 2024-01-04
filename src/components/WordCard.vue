@@ -1,6 +1,6 @@
 <template>
     <div class="word-card" v-bind:class="{ gap: word.level ===undefined }">
-        <word-with-options :word=word.word :options="word.options"></word-with-options>
+        <word-with-options @increaseIndex="increaseIndex" :answerInd= word.answerInd :word=word.word :options="word.options"></word-with-options>
         <levels v-if="word.level!==undefined" :level=word.level></levels>
         <hint :rule=word.rule></hint>
 
@@ -21,10 +21,18 @@ export default {
     },
     props:{
         word:{
+            answerInd:Number,
             word:String,
             rule:String,
             level: Number,
-            options: Array
+            options: Array,
+        }
+    },
+
+    methods:{
+        increaseIndex(){
+
+            this.$emit('increaseIndex')
         }
     }
 

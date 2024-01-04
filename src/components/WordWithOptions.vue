@@ -3,8 +3,11 @@
         <div class="word">
             {{word}}
         </div>
-        <div class="options">
-            <button class="option" v-for="option in options">{{ option }}</button>
+        <div class="options" ref="options">
+            <button class="option" @click="increaseIndex"
+                    :ref="options.indexOf(option)"
+                    v-bind:data-index="options.indexOf(option)"
+                    v-for="option in options">{{ option }}</button>
         </div>
 
     </div>
@@ -21,6 +24,32 @@ export default {
         options:{
             type: Array,
             required: true
+        },
+        answerInd:{
+            type: Number,
+            required: true
+        }
+    },
+    methods:{
+        increaseIndex(e){
+            let className=(+(e.target.dataset.index)===this.answerInd)?"right":"wrong"
+            console.log(e.target)
+            e.target.classList.add(className)
+            let right=this.$refs[this.answerInd][0]
+            if(!right.classList.contains("right"))
+                right.classList.add("right")
+
+
+            this.$refs.options.style.pointerEvents="none"
+
+
+
+            setTimeout(()=>{e.target.classList.remove(className)
+
+                right.classList.remove("right")
+                this.$refs.options.style.pointerEvents="all"
+
+                this.$emit('increaseIndex')}, 1000)
         }
     }
 
@@ -32,6 +61,7 @@ export default {
     display: flex;
     flex-direction: column;
 }
+
 .word{
     min-height: 40px;
     font-size: 20px;
@@ -78,6 +108,19 @@ export default {
     cursor: pointer;
     background-color: rgba(49, 113, 160, 1);
 }
+.right{
+    background-color: #099818;
+}
+.wrong{
+    background-color: #bd0606;
+}
+.right:hover{
+    background-color: #099818;
+}
+.wrong:hover{
+    background-color: #bd0606;
+}
+
 
 .word-with-options{
     flex: 2
