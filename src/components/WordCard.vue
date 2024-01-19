@@ -1,6 +1,6 @@
 <template>
     <div class="word-card" v-bind:class="{ gap: word.level ===undefined }">
-        <word-with-options @increaseIndex="increaseIndex" :answerInd= word.answerInd :word=word.word :options="word.options"></word-with-options>
+        <word-with-options @increaseIndex="increaseIndex" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-with-options>
         <levels v-if="word.level!==undefined" :level=word.level></levels>
         <hint :rule=word.rule></hint>
 
@@ -31,8 +31,10 @@ export default {
 
     methods:{
         increaseIndex(){
-
             this.$emit('increaseIndex')
+        },
+        rightAnswer(){
+            this.$emit('rightAnswer')
         }
     }
 
@@ -48,7 +50,7 @@ export default {
 
 
 .word-card{
-    padding-top: 4%;
+    padding-top: 1%;
     display: flex;
     flex-direction: row;
     height: 40%;

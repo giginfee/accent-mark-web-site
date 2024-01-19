@@ -32,8 +32,13 @@ export default {
     },
     methods:{
         increaseIndex(e){
-            let className=(+(e.target.dataset.index)===this.answerInd)?"right":"wrong"
-            console.log(e.target)
+            let rightAnswer=+(e.target.dataset.index)===this.answerInd
+            let className=rightAnswer?"right":"wrong"
+
+            //let the parent component know whether user chose the right answer
+            if(rightAnswer)
+                this.$emit('rightAnswer')
+
             e.target.classList.add(className)
             let right=this.$refs[this.answerInd][0]
             if(!right.classList.contains("right"))

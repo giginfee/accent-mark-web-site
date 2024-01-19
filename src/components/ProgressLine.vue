@@ -3,7 +3,7 @@
         <div class="progress-line blue-progress-line">
             <div class="point corner-point start-point green" > </div>
             <div id="point25" class="point small-point point25 " v-bind:class="{ green: progress>=25 }"> </div>
-            <div id="point50"  class="point small-point point50 " v-bind:class="{ green: progress>50 }"> </div>
+            <div id="point50"  class="point small-point point50 " v-bind:class="{ green: progress>=50 }"> </div>
             <div id="point75" class="point small-point point75 " v-bind:class="{ green: progress>=75 }"> </div>
             <div id="end-point" class="point corner-point end-point" v-bind:class="{ green: progress===100 }"></div>
         </div>
@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         changeWidth(e) {
-            this.$refs.line.style.width = this.progress+'%';
+            this.$refs.line.style.width = (+this.progress+1)+'%';
         }
     },
     updated() {
@@ -80,7 +80,7 @@ export default {
 
 .green-progress-line{
     border-bottom: 4px solid #3EBC33;
-    margin: -34px 0 30px 0;
+    margin: -33.5px 0 30px 0;
     width: 0;
 }
 .progress-line{
