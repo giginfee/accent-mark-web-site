@@ -5,27 +5,30 @@
         <div v-if="rightNumber!==allNumber" class="left-part">{{allNumber-rightNumber}}</div>
     </div>
 
-
-  <div class="grid" >
-    <div class="item grid-title">Правильних відповідей</div>
-    <div class="item grid-title">Неправильних відповідей</div>
-    <div class="item">3</div>
-    <div class="item">5</div>
-  </div >
     <div class="conclusion">
-    <a href="/" class="again">
-        <img alt="Заново" src="/src/assets/1572862.png"/>
-    </a>
+      <a href="/" class="again">
+          <img alt="Заново" src="/src/assets/again.png"/>
+      </a>
     </div>
+    <statistic :increased-level="increasedLevel" :decreased-level="decreasedLevel"></statistic>
 
 
 
 </template>
 
 <script>
+import Statistic from "@/components/Statistic.vue";
+
 export default {
     name: "Results",
+    components: {Statistic},
     props:{
+        increasedLevel:{
+            type:Number
+        },
+        decreasedLevel:{
+            type:Number
+        },
         rightNumber:{
             type:Number,
             required: true
@@ -36,7 +39,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.rightNumber, this.allNumber)
+        console.log(this.decreasedLevel)
         this.$refs.right.style.width = (this.rightNumber/this.allNumber*100)+'%';
     }
 }
@@ -75,7 +78,7 @@ a img{
 
 .conclusion{
     font-size: 20px;
-    padding: 15px;
+    padding-top: 30px;
     text-align: center;
 }
 

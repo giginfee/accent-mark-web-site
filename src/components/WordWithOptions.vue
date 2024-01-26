@@ -32,14 +32,22 @@ export default {
     },
     methods:{
         increaseIndex(e){
+            //show whether the answer was right or wrong
             let rightAnswer=+(e.target.dataset.index)===this.answerInd
             let className=rightAnswer?"right":"wrong"
+            e.target.classList.add(className)
 
             //let the parent component know whether user chose the right answer
             if(rightAnswer)
                 this.$emit('rightAnswer')
 
-            e.target.classList.add(className)
+            if(!rightAnswer)
+                this.$emit('wrongAnswer')
+
+
+
+
+            //if the answer was wrong, show the right one
             let right=this.$refs[this.answerInd][0]
             if(!right.classList.contains("right"))
                 right.classList.add("right")
@@ -54,7 +62,7 @@ export default {
                 right.classList.remove("right")
                 this.$refs.options.style.pointerEvents="all"
 
-                this.$emit('increaseIndex')}, 1000)
+                this.$emit('increaseIndex', this.increasedLevel, this.decreasedLevel)}, 1000)
         }
     }
 

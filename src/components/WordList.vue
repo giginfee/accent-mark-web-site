@@ -4,7 +4,10 @@
             Слова
         </p>
         <div class="words-list">
-            <a v-for="word in words" :href="`/${word}`">{{ word }}</a>
+            <div v-for="word in words" class="link-container">
+                <a  :href="`/${word}`">{{ word }}</a>
+
+            </div>
 
         </div>
 
@@ -16,13 +19,20 @@ export default {
     name: "RightBlock",
     data(){
         return {
-            words: ["Слово 1", "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10","Слово 11" ]
+            words: ["Слово 1",
+                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
+                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
+                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
+                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
+                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
+                "Слово 11" ]
         }
     }
 }
 </script>
 
 <style scoped>
+
 .words-box{
     padding: 35px  0 18px 10px;
     max-height: 100%;
@@ -38,12 +48,16 @@ export default {
     scroll-behavior: smooth;
     direction: rtl;
 }
+.link-container{
+    width: 100%;
+    direction: ltr;
+
+}
 .words-list a{
     margin-left: 5px;
-    display: block;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    direction: ltr;
+
     /*transition: font-weight 0.2s;*/
 
 }

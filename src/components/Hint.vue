@@ -17,17 +17,23 @@ export default {
             type:String,
         }
     },
+    updated() {
+        this.showElem("question-mark",true)
+        this.hideElem("rule",true)
+        },
     methods:{
         mouseOver(){
+            this.$emit("hintUsed")
+
             if(!this.rule)
                 return
             this.clearAllTimers()
-            this.$refs["question-mark"].style.opacity = "1";
-            this.$refs.rule.style.opacity = "0";
-            this.$refs.rule.style.display = "none";
-            this.$refs["question-mark"].style.display = "block";
+            this.showElem("question-mark",true)
+            this.hideElem("rule",true)
             timers.push(this.changeOpacity(this.$refs["question-mark"], animationDuration/2, 1))
             timers.push( setTimeout(()=>{
+                this.hideElem("question-mark")
+                this.showElem("rule")
                 this.$refs["question-mark"].style.display = "none";
                 this.$refs.rule.style.display = "block";
 
@@ -40,15 +46,15 @@ export default {
             if(!this.rule)
                 return
             this.clearAllTimers()
-            this.$refs["question-mark"].style.opacity = "0";
-            this.$refs.rule.style.opacity = "1";
-            this.$refs["question-mark"].style.display = "none";
-            this.$refs.rule.style.display = "block";
+            this.hideElem("question-mark",true)
+            this.showElem("rule",true)
 
             timers.push(this.changeOpacity(this.$refs.rule, animationDuration / 7, 1))
             timers.push(setTimeout(() => {
-                this.$refs["question-mark"].style.display = " block ";
-                this.$refs.rule.style.display = "none";
+                this.showElem("question-mark")
+                this.hideElem("rule")
+                // this.$refs["question-mark"].style.display = " block ";
+                // this.$refs.rule.style.display = "none";
             }, animationDuration / 3))
 
             timers.push(setTimeout(() => {
@@ -57,7 +63,16 @@ export default {
             }, animationDuration))
 
         },
-
+        hideElem(ref, ifOpacity){
+            if(ifOpacity)
+                this.$refs[ref].style.opacity = "0";
+            this.$refs[ref].style.display = "none";
+        },
+        showElem(ref, ifOpacity){
+            if(ifOpacity)
+                this.$refs[ref].style.opacity = "1";
+            this.$refs[ref].style.display = "block";
+        },
         clearAllTimers(){
             timers.forEach(x=> {
                 clearTimeout(x);

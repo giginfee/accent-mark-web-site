@@ -80,7 +80,7 @@ export default {
 
 .green-progress-line{
     border-bottom: 4px solid #3EBC33;
-    margin: -33.5px 0 30px 0;
+    margin: -34px 0 30px 0;
     width: 0;
 }
 .progress-line{
