@@ -1,6 +1,20 @@
 /*@import './base.css';*/
 
-
+:root{
+  --body-color: #f6f6f6;
+  --left-block-word-list-color: #e7e7e7;
+  --progress-line-active: #3EBC33;
+  --progress-line-inactive:#BDD9EC;
+  --hint-block-color: #89ADC7;
+  --main-text-color:#282828;
+  --level-point-inactive-color:#D9D9D9;
+  --level-point-active-color:#F07F17;
+  --training-option-color:#3171A0;
+  --wrong-answer-color:#099818;
+  --right-answer-color:#bd0606;
+  --button-header-color:#D3DFE8;
+  --text-main-color:#383838;
+}
 
 html,body{
   width: 100%;
@@ -14,17 +28,17 @@ html,body{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #383838;
+  color: var(--text-main-color);
 }
 body{
-  padding: 0 10px 10px 10px;
+  padding: 0 10px 0px 10px;
   background-color: #ffffff;
 
 }
 #app {
-  padding-top: 10px;
+  /*padding-top: 10px;*/
   min-width: 500px;
-  background-color: #f6f6f6;
+  background-color: var(--body-color);
   width: 75%;
   height: 100%;
   margin: 0;

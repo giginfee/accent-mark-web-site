@@ -5,9 +5,11 @@ import Header from "@/components/Header.vue";
 import ProgressLine from "@/components/ProgressLine.vue";
 import WordCard from "@/components/WordCard.vue";
 import TrainingSection from "@/components/TrainingSection.vue";
+import LeftBlock from "@/components/LeftBlock.vue";
 export default {
     name: "App",
     components:{
+        LeftBlock,
         WordList,Header,Logo,ProgressLine,WordCard,TrainingSection
     }
 
@@ -15,10 +17,7 @@ export default {
 </script>
 
 <template>
-    <div class="left-block">
-       <logo></logo>
-        <word-list></word-list>
-    </div>
+    <left-block></left-block>
     <div class="right-side">
         <Header></Header>
         <TrainingSection></TrainingSection>
@@ -49,17 +48,6 @@ a{
 
 
 
-.left-block{
-    width: 250px;
-    height: 100%;
-    background-color: #D4DFE8;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    box-sizing: border-box;
-
-}
 
 
 

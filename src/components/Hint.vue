@@ -129,7 +129,7 @@ export default {
     /*align-self:start;*/
     text-align:center;
     color: white;
-    background-color: #89ADC7;
+    background-color: var(--hint-block-color);
     padding: 1% 2%;
     border-radius: 16px;
     font-weight: bold;
@@ -148,19 +148,19 @@ export default {
 
 .hint-pop-up{
     display: none;
-    border: #89ADC7 1px solid;
+    border: var(--hint-block-color) 1px solid;
     border-radius: 15px;
     opacity: 0;
-    top:-250%;
+    top:-200%;
     left:-100%;
     width: 250%;
     min-width: 100px;
     padding: 10px;
     font-weight: 400;
     position: absolute;
-    font-size: 12px;
+    font-size: 11px;
     background-color: rgb(255, 255, 255);
-    color: #282828;
+    color: var(--main-text-color);
     transition: opacity 0.3s;
 }
 

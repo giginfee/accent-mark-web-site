@@ -33,7 +33,7 @@ export default {
 .exit-button{
     margin-left: 2%;
     font-size: 14px;
-    background-color: #D3DFE8;
+    background-color: var(--button-header-color);
     border-radius: 7px;
     padding: 8px 22px;
     display: flex;
@@ -43,8 +43,8 @@ export default {
 }
 
 .exit-button:hover{
-    background-color: #89ADC7;
-    color:#D3DFE8;
+    background-color: var(--hint-block-color);
+    color:white;
 }
 .account-box{
     flex: 1;
@@ -56,7 +56,7 @@ export default {
 .header {
     width: 100%;
     height: 50px;
-    border-bottom: 2px solid #D3DFE8;
+    border-bottom: 2px solid var(--button-header-color);
     display: flex;
     flex-direction: row;
 }

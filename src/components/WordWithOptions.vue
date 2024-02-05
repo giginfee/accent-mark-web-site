@@ -110,28 +110,29 @@ export default {
     box-sizing: border-box;
     border-radius: 16px;
     border-width: 0;
-    background-color: #3171A0;
-    transition: background-color 0.3s;
+    background-color: var(--training-option-color);
+    transition: opacity 0.3s;
 }
 .option:hover{
     cursor: pointer;
-    background-color: rgba(49, 113, 160, 0.75);
+    /*background-color:var(--training-option-color);*/
+    opacity: 0.75;
 }
 .option:active{
     cursor: pointer;
-    background-color: rgba(49, 113, 160, 1);
+    opacity: 1;
 }
 .right{
-    background-color: #099818;
+    background-color: var(--right-answer-color);
 }
 .wrong{
-    background-color: #bd0606;
+    background-color: var(--wrong-answer-color);
 }
 .right:hover{
-    background-color: #099818;
+    background-color: var(--right-answer-color);
 }
 .wrong:hover{
-    background-color: #bd0606;
+    background-color:var(--wrong-answer-color);
 }
 
 

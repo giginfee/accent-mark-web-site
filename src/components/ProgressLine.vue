@@ -40,7 +40,7 @@ export default {
     width: 15px;
     height: 15px;
     border-radius: 30px;
-    background-color: #BDD9EC;
+    background-color: var(--progress-line-inactive);
 }
 .small-point{
     width: 9px;
@@ -56,7 +56,7 @@ export default {
       margin-left: 75%;
   }
 .green{
-    background-color: #3EBC33;
+    background-color: var(--progress-line-active);
 }
 
 .corner-point{
@@ -69,7 +69,7 @@ export default {
     right: 0;
 }
 .blue-progress-line{
-    border-bottom: 4px solid #BDD9EC;
+    border-bottom: 4px solid var(--progress-line-inactive);
     margin: 30px 0;
 }
 .progress-line{
@@ -79,7 +79,7 @@ export default {
 }
 
 .green-progress-line{
-    border-bottom: 4px solid #3EBC33;
+    border-bottom: 4px solid var(--progress-line-active);
     margin: -34px 0 30px 0;
     width: 0;
 }

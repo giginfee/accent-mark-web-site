@@ -33,6 +33,7 @@ export default {
 
 <style scoped>
 
+
 .words-box{
     padding: 35px  0 18px 10px;
     max-height: 100%;

@@ -32,10 +32,10 @@ export default {
     width: 7px;
     height: 7px;
     border-radius: 10px;
-    background-color: #D9D9D9;
+    background-color:var(--level-point-inactive-color);
 }
 .orange{
-    background-color: #F07F17;
+    background-color: var(--level-point-active-color);
 }
 
 </style>

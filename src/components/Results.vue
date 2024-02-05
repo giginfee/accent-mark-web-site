@@ -47,11 +47,11 @@ export default {
 
 <style scoped>
 .right-part{
-    background-color: #3EBC33;
+    background-color: var(--progress-line-active);
     width:70%
 }
 .left-part{
-    background-color: #B62626;
+    background-color: var(--right-answer-color);
     flex: 1;
 }
 .left-part, .right-part{
@@ -82,39 +82,9 @@ a img{
     text-align: center;
 }
 
-.grid{
-    /*width: 50%;*/
-    margin-top: 20px;
-    border-left: rgba(26, 26, 26) 1px solid;
-    border-top: rgba(26, 26, 26) 1px solid;
-
-    /*background-color: rgb(56, 51, 51);*/
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.grid :first-child{
-    background-color: #5dcb56;
-
-}
-.grid :nth-child(2){
-    background-color: #f38484;
-}
 
 
-.item {
-    /*border: rgba(26, 26, 26, 0.5) 1px solid;*/
-    border-bottom: 1px solid rgb(56, 51, 51);;
-    border-right: 1px solid rgb(56, 51, 51);;
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-}
 
-
-.grid-title{
-  font-weight: 500;
-
-}
 .title{
     margin: 20px 0;
     display: flex;
