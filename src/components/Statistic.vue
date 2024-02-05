@@ -114,7 +114,7 @@ export default {
     margin-bottom: 10px;
     box-sizing: border-box;
     padding:15px;
-    border-radius: 15px;
+    border-radius:  var(--border-radius);
     font-size: clamp(14px,1.2vw,16px);
     min-width: 150px;
 
@@ -141,7 +141,7 @@ export default {
     background-color: #DBDFE2;
     width: 130px;
     height: 50px;
-    border-radius: 15px;
+    border-radius:  var(--border-radius);
     display: flex;
     justify-content: center;
     align-items: center;

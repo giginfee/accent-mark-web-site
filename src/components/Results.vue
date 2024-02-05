@@ -51,7 +51,7 @@ export default {
     width:70%
 }
 .left-part{
-    background-color: var(--right-answer-color);
+    background-color: var(--wrong-answer-color);
     flex: 1;
 }
 .left-part, .right-part{
@@ -64,7 +64,7 @@ export default {
 #result{
     margin-top: 10px;
     display: flex;
-    border-radius: 20px;
+    border-radius:  var(--border-radius);
     height: 35px;
     overflow: hidden;
 }

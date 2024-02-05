@@ -1,19 +1,26 @@
 /*@import './base.css';*/
 
 :root{
+  --border-radius:14px;
   --body-color: #f6f6f6;
-  --left-block-word-list-color: #e7e7e7;
+  --left-block-word-list-color: #D4DFE8;
   --progress-line-active: #3EBC33;
-  --progress-line-inactive:#BDD9EC;
+  --progress-line-inactive:#D3DFE8;
   --hint-block-color: #89ADC7;
   --main-text-color:#282828;
   --level-point-inactive-color:#D9D9D9;
   --level-point-active-color:#F07F17;
   --training-option-color:#3171A0;
-  --wrong-answer-color:#099818;
-  --right-answer-color:#bd0606;
+  --training-word-border-color:#6A7A85;
+  --wrong-answer-color:#bd0606;
+  --right-answer-color:#099818;
   --button-header-color:#D3DFE8;
   --text-main-color:#383838;
+  --rule-card-border-color:#6A7A85;
+}
+a{
+  color: inherit;
+  text-decoration-line: none;
 }
 
 html,body{

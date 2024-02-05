@@ -34,7 +34,7 @@ export default {
     margin-left: 2%;
     font-size: 14px;
     background-color: var(--button-header-color);
-    border-radius: 7px;
+    border-radius: 8px;
     padding: 8px 22px;
     display: flex;
     justify-content: center;

@@ -20,7 +20,7 @@ export default {
 .left-block{
     width: 250px;
     height: 100%;
-    background-color: var(--left-block-word-list-color);
+    background-color: var(--button-header-color);
     /*border-radius: 16px;*/
     display: flex;
     flex-direction: column;

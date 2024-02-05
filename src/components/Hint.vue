@@ -131,7 +131,7 @@ export default {
     color: white;
     background-color: var(--hint-block-color);
     padding: 1% 2%;
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     font-weight: bold;
     font-size: 24px;
     height: max-content;
@@ -149,7 +149,7 @@ export default {
 .hint-pop-up{
     display: none;
     border: var(--hint-block-color) 1px solid;
-    border-radius: 15px;
+    border-radius:  var(--border-radius);
     opacity: 0;
     top:-200%;
     left:-100%;

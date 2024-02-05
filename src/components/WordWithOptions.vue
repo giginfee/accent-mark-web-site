@@ -82,8 +82,8 @@ export default {
     align-items: center;
     padding-left: 20px;
     font-weight: bold;
-    border-radius: 16px;
-    border: 4px solid #3171A0;
+    border-radius:  var(--border-radius);
+    border: 2px solid var(--training-word-border-color);
     flex: 0.3;
     background-color: white;
     margin: 0 0 4% 0;
@@ -108,7 +108,7 @@ export default {
     font-size: clamp(14px,1.5vw,18px);
     font-weight: 300;
     box-sizing: border-box;
-    border-radius: 16px;
+    border-radius:  var(--border-radius);
     border-width: 0;
     background-color: var(--training-option-color);
     transition: opacity 0.3s;

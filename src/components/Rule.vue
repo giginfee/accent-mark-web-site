@@ -1,0 +1,64 @@
+<template>
+<div class="card">
+    <h3>Правило #{{index}}</h3>
+    <p class="text">{{rule.text}}</p>
+    <h4>Слова</h4>
+    <p class="words">{{words}}</p>
+
+</div>
+</template>
+
+<script>
+export default {
+    name: "Rule",
+    props:{rule:{
+            text:String,
+            words:Array,
+            required:true
+        },
+        index:{
+        type:Number,required: true
+    }},
+    data(){
+        return {words:""}
+    },
+
+    methods:{
+        renderWordsArray(){
+            this.words=this.rule.words.join(", ").concat(".")
+            this.words=this.words[0].toUpperCase().concat(this.words.slice(1))
+
+        }
+    },
+    mounted() {
+        this.renderWordsArray();
+    }
+}
+</script>
+
+<style scoped>
+.card{
+    border-radius: var(--border-radius);
+    border: var(--rule-card-border-color) solid 2px;
+    width: 80%;
+    padding: 30px;
+}
+.text{
+    margin: 15px 0 30px 0;
+
+}
+.words{
+    margin: 15px 0 0 0;
+}
+.text, .words{
+    font-size: clamp(14px,0.8vw,18px);
+}
+h4{
+font-weight: 500;
+}
+h3, p, h4{
+    margin: 0;
+}
+
+
+</style>
