@@ -44,10 +44,7 @@ export default {
         },
         wrongAnswer(){
             this.$emit('wrongAnswer')
-        },
-        // hintUsed(){
-        //     this.$emit('hintUsed')
-        // }
+        }
 
     }
 

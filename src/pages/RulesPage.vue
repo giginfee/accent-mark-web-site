@@ -3,7 +3,7 @@
     <div class="right-side">
         <Header></Header>
         <div class="wrapper">
-                <rule v-for="(rule,i) in rules" :rule="rule" :index="i+1"></rule>
+            <rule v-for="(rule,i) in rules" :rule="rule" :index="i+1"></rule>
         </div>
 
 
@@ -38,7 +38,7 @@ export default {
 .wrapper{
     scroll-behavior: smooth;
     display: flex;
-    gap:30px;
+    gap:20px;
     flex-direction: column;
     margin: 5% 0;
     overflow: auto;
@@ -46,14 +46,7 @@ export default {
 
 }
 
-.right-side{
-    min-width: 350px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 4%;
-}
+
 ::-webkit-scrollbar {
     display: none;
     width: 2px;

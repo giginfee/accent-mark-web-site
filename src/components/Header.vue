@@ -1,10 +1,10 @@
 <template>
     <div class="header">
-        <a href="/" class="header-option">Тренажер</a>
-        <a href="/" class="header-option">Правила</a>
+        <a href="/training" class="header-option">Тренажер</a>
+        <a href="/rules" class="header-option">Правила</a>
         <div class="account-box">
-            <a href="/" class="exit-button">Вийти</a>
-            <a href="/" class="avatar-link">
+            <EntryButton button-content="Вийти" href="/"></EntryButton>
+            <a href="/profile" class="avatar-link">
                 <img class="avatar" src="/src/assets/avatar.svg">
             </a>
         </div>
@@ -12,8 +12,11 @@
 </template>
 
 <script>
+import EntryButton from "@/components/EntryButton.vue";
+
 export default {
-    name: "Header"
+    name: "Header",
+    components: {EntryButton}
 }
 </script>
 
@@ -21,6 +24,7 @@ export default {
 
 
 .avatar-link{
+    margin-right: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,22 +34,8 @@ export default {
 }
 
 
-.exit-button{
-    margin-left: 2%;
-    font-size: 14px;
-    background-color: var(--button-header-color);
-    border-radius: 8px;
-    padding: 8px 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s,color 0.3s ;
-}
 
-.exit-button:hover{
-    background-color: var(--hint-block-color);
-    color:white;
-}
+
 .account-box{
     flex: 1;
     display: flex;

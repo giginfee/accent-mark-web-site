@@ -6,7 +6,7 @@
     </div>
 
     <div class="conclusion">
-      <a href="/" class="again">
+      <a href="/training" class="again">
           <img alt="Заново" src="/src/assets/again.png"/>
       </a>
     </div>

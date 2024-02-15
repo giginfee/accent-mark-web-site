@@ -1,9 +1,13 @@
 <template>
-<div class="card">
-    <h3>Правило #{{index}}</h3>
-    <p class="text">{{rule.text}}</p>
-    <h4>Слова</h4>
-    <p class="words">{{words}}</p>
+<div class="wrap">
+        <div class="card second-border">
+            <h3>Правило #{{index}}</h3>
+            <p class="text">{{rule.text}}</p>
+            <h4>Слова</h4>
+            <p class="words">{{words}}</p>
+
+        </div>
+
 
 </div>
 </template>
@@ -37,6 +41,10 @@ export default {
 </script>
 
 <style scoped>
+.wrap{
+    margin-bottom: 10px;
+}
+
 .card{
     border-radius: var(--border-radius);
     border: var(--rule-card-border-color) solid 2px;

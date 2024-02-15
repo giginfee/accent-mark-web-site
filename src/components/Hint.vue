@@ -142,12 +142,10 @@ export default {
     position: relative;
 }
 .hint-block-inactive:hover .hint-pop-up{
-    display: block;
     opacity:1;
 }
 
 .hint-pop-up{
-    display: none;
     border: var(--hint-block-color) 1px solid;
     border-radius:  var(--border-radius);
     opacity: 0;
@@ -161,7 +159,7 @@ export default {
     font-size: 11px;
     background-color: rgb(255, 255, 255);
     color: var(--main-text-color);
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
 }
 
 .hint-block-active:hover{
