@@ -143,13 +143,15 @@ export default {
 }
 .hint-block-inactive:hover .hint-pop-up{
     opacity:1;
+    display: block;
 }
 
 .hint-pop-up{
+    display: none;
     border: var(--hint-block-color) 1px solid;
     border-radius:  var(--border-radius);
     opacity: 0;
-    top:-200%;
+    top:-270%;
     left:-100%;
     width: 250%;
     min-width: 100px;

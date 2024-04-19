@@ -57,7 +57,7 @@ body{
 }
 #app {
   /*padding-top: 10px;*/
-  min-width: 500px;
+  min-width: 810px;
   background-color: var(--body-color);
   width: 75%;
   height: 100%;

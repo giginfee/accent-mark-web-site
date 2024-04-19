@@ -27,9 +27,12 @@ export default {
 <style scoped>
 .levels:hover .level-pop-up{
     opacity:1;
+    display: block;
 }
 
 .level-pop-up{
+    display: none;
+
     text-align: center;
     border: var(--hint-block-color) 1px solid;
     border-radius:  var(--border-radius);
