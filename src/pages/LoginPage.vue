@@ -15,14 +15,25 @@ import Logo from "@/components/Logo.vue";
 import EntryButton from "@/components/EntryButton.vue";
 import LoginForm from "@/components/LoginForm.vue";
 import SignUpForm from "@/components/SignUpForm.vue";
+import getUserMixin from "@/mixin/getUserMixin.js";
+import Notifications from "@kyvg/vue3-notification";
 
 export default {
     name: "LoginPage",
     components: {LoginForm, EntryButton, Logo,SignUpForm},
-    data(){return {
-        login:!true
+    mixins: [getUserMixin],
 
-        }}
+    data(){return {
+        login:true
+        }},
+    beforeMount() {
+        this.getUser().then(data => {
+            console.log(data)
+            if(data!== null)
+                this.$router.push("/")
+        })
+
+    }
 }
 </script>
 

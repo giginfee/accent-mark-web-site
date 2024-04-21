@@ -134,6 +134,23 @@ async function getUserByLogin(login) {
         await mongoClient.close();
     }
 }
+async function getWordById(id) {
+    try {
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
+        const collection = db.collection("Words");
+        const cursor = collection.find({ id });
+        let res= await cursor.toArray();
+        if(res.length!==0)
+            return res[0]
+        return null
+    }catch(err) {
+        return err;
+    } finally {
+        await mongoClient.close();
+    }
+}
+
 async function addNewUser(login, password) {
     let user = await getUserByLogin(login)
     try {
@@ -263,11 +280,11 @@ async function getAllWordsForUserWithLevels(login) {
             }
         ];
         let result = await collection2.aggregate(pipeline).toArray();
-        let indexesOfThoseWithLevels = result.map(obj=>obj.idWord);
         result = result.map(obj=> {
             let objNew= obj.word[0]
             objNew.level=obj.level
             return objNew});
+        let indexesOfThoseWithLevels = result.map(obj=>obj.id);
 
         pipeline = [
             {
@@ -473,6 +490,9 @@ module.exports = {
 
     // - words for rule
     findAllWordsForRule:findAllWordsForRule,
+
+    // - word by id
+    getWordById:getWordById,
 
     // - rule for word
     getRuleForWord:getRuleForWord,

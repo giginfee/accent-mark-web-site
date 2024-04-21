@@ -12,7 +12,11 @@ var db_connect = require('./db/db_connect');
 var {authRequired} = require('./middleware/authMiddleware');
 
 
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    'exposedHeaders': ['Accept', "jwt"],
+}))
 app.use(cookieParser())
 app.use(express.json());
 

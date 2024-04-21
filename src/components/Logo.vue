@@ -1,8 +1,8 @@
 <template>
     <div  class="logo">
-        <a href="/">
+        <router-link to="/">
             <img src="/src/assets/logo.svg" alt="logo">
-        </a>
+        </router-link>
     </div>
 </template>
 

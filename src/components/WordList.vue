@@ -5,7 +5,7 @@
         </p>
         <div class="words-list">
             <div v-for="word in words" class="link-container">
-                <a  :href="`/${word}`">{{ word }}</a>
+                <router-link class="a" :to="`/word/${word.id}`">{{ word.word }}</router-link>
 
             </div>
 
@@ -15,19 +15,21 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex';
+
 export default {
     name: "RightBlock",
     data(){
         return {
-            words: ["Слово 1",
-                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
-                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
-                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
-                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
-                "Слово 2","Слово 3","Слово 4","Слово 5","Слово 6","Слово 7","Слово 8","Слово 9","Слово 10",
-                "Слово 11" ]
+
         }
-    }
+    },methods:{
+
+    },
+    computed:{
+        ...mapGetters(['words'])
+    },
+
 }
 </script>
 
@@ -55,8 +57,10 @@ export default {
 
 }
 .words-list a{
+    display: inline-block;
+    margin-bottom: 10px;
     margin-left: 5px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
 
     /*transition: font-weight 0.2s;*/

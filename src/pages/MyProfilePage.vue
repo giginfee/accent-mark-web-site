@@ -34,11 +34,14 @@ import LeftBlock from "@/components/LeftBlock.vue";
 import Statistic from "@/components/Statistic.vue";
 import WordLevelsStats from "@/components/WordLevelsStats.vue";
 import GeneralProgress from "@/components/GeneralProgress.vue";
+import getUserMixin from "@/mixin/getUserMixin.js";
 
 
 export default {
     name: "MyProfilePage",
     components: {GeneralProgress, WordLevelsStats, Statistic, LeftBlock,Header},
+    mixins: [getUserMixin],
+
     data(){
         return{
             rotation:-90,
@@ -63,6 +66,14 @@ export default {
     },
     mounted() {
         setTimeout(()=> /*to do: calculate percentage according to real progress*/ this.rotation = -0, 300)
+
+    },
+    beforeMount() {
+        this.getUser().then(data => {
+            console.log(data)
+            if(data=== null)
+                this.$router.push("/")
+        })
 
     }
 }

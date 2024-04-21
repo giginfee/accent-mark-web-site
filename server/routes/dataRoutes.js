@@ -11,6 +11,9 @@ router.get('/all-words', dataController.allWords);
 // - all rules
 router.get('/all-rules', dataController.allRules);
 
+// - word by id
+router.get('/word/:wordId', dataController.wordById);
+
 // - words for rule
 router.get('/words-for-rule/:ruleId', dataController.wordsForRule);
 
@@ -19,6 +22,9 @@ router.get('/rule-for-word/:wordId', dataController.ruleForWord);
 
 // - all words with levels for user
 router.get('/all-words-with-levels',authRequired, dataController.allWordsWithLevels);
+
+// - all words with levels for user
+router.get('/user-progress',authRequired, dataController.userProgress);
 
 
 module.exports = router;

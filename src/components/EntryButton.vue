@@ -1,5 +1,5 @@
 <template>
-    <a :href=href class="exit-button">{{ buttonContent}}</a>
+    <router-link ref="btn" :to=href class="exit-button">{{ buttonContent}}</router-link>
 
 </template>
 
@@ -8,7 +8,14 @@ export default {
     name: "EntryButton",
     props:{
         buttonContent:{type:String, required:true},
-        href:{type:String, required:true}
+        href:{type:String, required:true},
+    },
+    methods:{
+        click(){
+            this.$refs["btn"].addEventListener("click",()=>{
+                this.$emit("click")
+            })
+        }
     }
 }
 </script>

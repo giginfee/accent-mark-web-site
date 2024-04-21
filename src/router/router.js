@@ -11,7 +11,12 @@ const routes = [
     { path: '/login', component: LoginPage },
     { path: '/rules', component: RulesPage },
     { path: '/profile', component: MyProfilePage },
-    { path: '/training', component: TrainingPage }
+    { path: '/training', component: TrainingPage },
+    {
+        path: '/word/:id',
+        name: 'change',
+        component: WordPage
+    }
 ];
 
 const router = createRouter({
