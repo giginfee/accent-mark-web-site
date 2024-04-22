@@ -5,7 +5,7 @@
             <div id="point25" class="point small-point point25 " v-bind:class="{ green: progress>=25 }"> </div>
             <div id="point50"  class="point small-point point50 " v-bind:class="{ green: progress>=50 }"> </div>
             <div id="point75" class="point small-point point75 " v-bind:class="{ green: progress>=75 }"> </div>
-            <div id="end-point" class="point corner-point end-point" v-bind:class="{ green: progress===100 }"></div>
+            <div id="end-point" class="point corner-point end-point" v-bind:class="{ green: progress>=97 }"></div>
         </div>
         <div class="progress-line green-progress-line" ref="line" >
         </div>

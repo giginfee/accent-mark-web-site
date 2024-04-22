@@ -5,9 +5,10 @@
         </div>
         <div class="options" ref="options">
             <button class="option" @click="increaseIndex"
+                    v-bind:class="{'columns-2':i===2}"
                     :ref="options.indexOf(option)"
                     v-bind:data-index="options.indexOf(option)"
-                    v-for="option in options">{{ option }}</button>
+                    v-for="(option,i) in options">{{ option}}</button>
         </div>
 
     </div>
@@ -93,6 +94,7 @@ export default {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+
     column-gap: 4%;
     row-gap: 9%;
 
@@ -113,6 +115,10 @@ export default {
     background-color: var(--training-option-color);
     transition: opacity 0.3s;
 }
+.columns-2 {
+    grid-column: span 2; /* Займати дві колонки */
+}
+
 .option:hover{
     cursor: pointer;
     /*background-color:var(--training-option-color);*/

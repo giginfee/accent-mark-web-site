@@ -16,53 +16,96 @@
 import WordCard from "@/components/WordCard.vue";
 import ProgressLine from "@/components/ProgressLine.vue";
 import Results from "@/components/Results.vue";
+import getUserMixin from "@/mixin/getUserMixin.js";
 
 export default {
     name: "TrainingSection",
     components: {ProgressLine, WordCard, Results},
+    mixins: [getUserMixin],
     data(){
         return{
+            user:false,
             hintWasUsed:false,
             increasedLevel:0,
             decreasedLevel:0,
             currentIndex: 0,
             words:[
-                {word:"Слово 1",answerInd:1, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:3, rule:"Правило що пояснює чому слово має такий наголос"},
-                {word:"Слово 2",answerInd:2, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:2, rule:"Правило що пояснює чому слово має такий наголос2"},
-                {word:"Слово 3",answerInd:3, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:0},
-                // {word:"Слово 4",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:0, rule:"Правило що пояснює чому слово має такий наголос"},
-                // {word:"Слово 5",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:2, rule:"Правило що пояснює чому слово має такий наголос"},
-                // {word:"Слово 6",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:0, rule:"Правило що пояснює чому слово має такий наголос"},
-                // {word:"Слово 7",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:4, rule:"Правило що пояснює чому слово має такий наголос"},
-                // {word:"Слово 8",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:0, rule:"Правило що пояснює чому слово має такий наголос"},
-                // {word:"Слово 9",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:3, rule:"Правило що пояснює чому слово має такий наголос"},
-                {word:"Слово 10",answerInd:0, options:["Варіант 1", "Варіант 2","Варіант 3","Варіант 4"],level:1, rule:"Правило що пояснює чому слово має такий наголос"}
-            ],
+                {word:"Слово 1",answerInd:1, options:["Варіант 1", "Варіант 2","Варіант 3"],level:3, rule:"Правило що пояснює чому слово має такий наголос"},
+                 ],
             progress: 0,
             rightAnswerCount:0
         }
     },
+    beforeMount() {
+        //
+        this.getUser().then(data => {
+            if (data === null)
+                this.user = false
+            else {
+                this.user = true
+            }
+        })
+
+        const options = {
+            method: 'GET',
+            mode:"cors",
+            credentials: 'include'
+        };
+
+        fetch(`http://localhost:3000/random-50-words`, options).then(response=>
+            response.json()
+        ).then(data=> {
+            this.words=data
+            }
+        )
+
+
+    },
     methods:{
+        increaseLevel(id){
+
+            const options = {
+                method: 'POST',
+                mode:"cors",
+                credentials: 'include'
+            };
+            if(this.user)
+               fetch(`http://localhost:3000/increase-level/${id}`, options).then()
+
+        },
+        decreaseLevel(id){
+
+            const options = {
+                method: 'POST',
+                mode:"cors",
+                credentials: 'include'
+            };
+            if(this.user)
+              fetch(`http://localhost:3000/decrease-level/${id}`, options).then()
+
+        },
+
         increaseIndex(){
             this.currentIndex++
         },
-        rightAnswer(){
+        rightAnswer(id){
+            console.log(id)
             this.rightAnswerCount++
 
             //increase level of this word if user didn't use a hint
             if(!this.hintWasUsed) {
                 this.increasedLevel++
                 console.log("переведено")
-
+                this.increaseLevel(id)
             }
-            //to do: post method to server
             this.hintWasUsed=false
+
         },
-        wrongAnswer(){
+        wrongAnswer(id){
             this.decreasedLevel++
 
-            //to do: post method to server
             console.log("зменшено")
+            this.decreaseLevel(id)
 
             this.hintWasUsed=false
         }

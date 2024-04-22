@@ -1,7 +1,7 @@
 <template>
 <div class="wrap">
         <div class="card second-border">
-            <h3>Правило #{{index}}</h3>
+            <h3>Правило #{{rule.id}}</h3>
             <p class="text">{{rule.text}}</p>
             <h4>Слова</h4>
             <p class="words">{{words}}</p>
@@ -16,26 +16,40 @@
 export default {
     name: "Rule",
     props:{rule:{
+            id:Number,
             text:String,
-            words:Array,
             required:true
-        },
-        index:{
-        type:Number,required: true
-    }},
+        }
+    },
     data(){
-        return {words:""}
+        return {
+            words:[]
+        }
     },
 
     methods:{
         renderWordsArray(){
-            this.words=this.rule.words.join(", ").concat(".")
+            this.words=this.words.join(", ").concat(".")
             this.words=this.words[0].toUpperCase().concat(this.words.slice(1))
 
         }
     },
     mounted() {
-        this.renderWordsArray();
+        const options = {
+            method: 'GET',
+            mode:"cors",
+            credentials: 'include'
+        };
+
+        fetch(`http://localhost:3000/words-for-rule/${this.rule.id}`, options).then(response=>
+            response.json()
+        ).then(data=> {
+            this.words=data.map(obj=>obj.word)
+            console.log(data.map(obj=>obj.word))
+            this.renderWordsArray();
+        })
+
+
     }
 }
 </script>

@@ -52,9 +52,6 @@ export default {
         update(){
             this.showPrevious=(this.$route.params.id != 1)
             this.showNext=(this.$route.params.id !==this.wordsList.length )
-            console.log('showPrevious, showNext')
-            console.log(this.wordsList.length)
-            console.log(this.showPrevious, this.showNext)
             const options = {
                 method: 'GET',
                 mode:"cors",
@@ -64,23 +61,22 @@ export default {
             fetch(`http://localhost:3000/word/${this.$route.params.id}`, options).then(response=>
                 response.json()
             ).then(data=> {
-
                     this.word.word=data.word
 
-                    fetch(`http://localhost:3000/rule-for-word/${this.$route.params.id}`, options).then(response=>
-                        response.json()
-                    ).then(data=> {
-                        this.word.rule=data
-                        if (this.word.rule.id.length!==0)
-                            fetch(`http://localhost:3000/words-for-rule/${this.word.rule.id}`, options).then(response=>
-                                response.json()
-                                ).then(data=> {
+                }
+            )
+            fetch(`http://localhost:3000/rule-for-word/${this.$route.params.id}`, options).then(response=>
+                response.json()
+            ).then(data=> {
+                    this.word.rule=data
+                    if (this.word.rule.id.length!==0)
+                        fetch(`http://localhost:3000/words-for-rule/${this.word.rule.id}`, options).then(response=>
+                            response.json()
+                        ).then(data=> {
 
-                                    this.word.rule.words=data.map(obj=>obj.word)
-                                }
-                            )
-                        }
-                    )
+                                this.word.rule.words=data.map(obj=>obj.word)
+                            }
+                        )
                 }
             )
         }

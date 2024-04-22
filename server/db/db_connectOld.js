@@ -2,20 +2,16 @@ const MongoClient = require('mongodb').MongoClient;
 
 
 
-
+const mongoClient = new MongoClient('mongodb://127.0.0.1:27017/');
 
 const DBNAME="AccentMark"
-async function connectToDatabase() {
-    const client = new MongoClient("mongodb://127.0.0.1:27017/");
-    await client.connect();
-    return client.db(DBNAME);
-}
+
 
 decreaseLevel(3, "adm").then()
 async function getShowDate(idWord, login){
     try {
-
-        const db = await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection = db.collection("WordsLevelForUser");
         const cursor = await collection.find({ login, idWord }).toArray();
         if(cursor.length===0)
@@ -24,14 +20,14 @@ async function getShowDate(idWord, login){
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 }
 
 async function getLevel(idWord, login){
     try {
-
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection = db.collection("WordsLevelForUser");
         const cursor = await collection.find({ login, idWord }).toArray();
         if(cursor.length===0)
@@ -40,7 +36,7 @@ async function getLevel(idWord, login){
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 }
 
@@ -63,8 +59,8 @@ async function increaseLevel(idWord, login){
     nextShowDate.setDate((new Date()).getDate()+dateDiff)
 
     try {
-
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         let collection = db.collection("WordsLevelForUser");
         if(nextLevel===1){
             await collection.insertOne({idWord, login, nextShowDate, level:nextLevel})
@@ -77,7 +73,7 @@ async function increaseLevel(idWord, login){
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 
 }
@@ -88,8 +84,8 @@ async function decreaseLevel(idWord, login){
 
 
     try {
-
-        const db = await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         let collection = db.collection("WordsLevelForUser");
         if(nextLevel===0){
             await collection.deleteOne({idWord, login})
@@ -101,7 +97,7 @@ async function decreaseLevel(idWord, login){
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 
 }
@@ -111,21 +107,21 @@ async function decreaseLevel(idWord, login){
 
 async function getAll(collName) {
     try {
-
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection = db.collection(collName);
         const cursor = collection.find();
         return await cursor.toArray();
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 }
 async function getUserByLogin(login) {
     try {
-
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection = db.collection("Users");
         const cursor = collection.find({ login: login });
         let res= await cursor.toArray();
@@ -135,13 +131,13 @@ async function getUserByLogin(login) {
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 }
 async function getWordById(id) {
     try {
-
-        const db = await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection = db.collection("Words");
         const cursor = collection.find({ id });
         let res= await cursor.toArray();
@@ -151,15 +147,15 @@ async function getWordById(id) {
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 }
 
 async function addNewUser(login, password) {
     let user = await getUserByLogin(login)
     try {
-
-        const db = await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection = db.collection("Users");
         console.log("user")
         console.log(user)
@@ -172,17 +168,17 @@ async function addNewUser(login, password) {
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 }
 
 
-const NUMBER=10
+
 async function get50RandomWords() {
     let words = await getAll("Words")
-    if (words.length<=NUMBER)
+    if (words.length<=50)
         return words
-    const randomWords = getNRandomFromArray(words,NUMBER);
+    const randomWords = getNRandomFromArray(words,50);
 
     return randomWords
 }
@@ -190,9 +186,9 @@ async function get50RandomWords() {
 
 async function get50RandomWordsForUser(login) {
     let words = await getAllWordsForUserToShow(login)
-    if (words.length<=NUMBER)
+    if (words.length<=50)
         return words
-    const randomWords = getNRandomFromArray(words,NUMBER);
+    const randomWords = getNRandomFromArray(words,50);
 
     return randomWords
 }
@@ -216,8 +212,8 @@ function getNRandomFromArray(array,n){
 
 async function getAllWordsForUserToShow(login) {
     try {
-
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection1 = db.collection("Words");
         const collection2 = db.collection("WordsLevelForUser");
 
@@ -246,14 +242,14 @@ async function getAllWordsForUserToShow(login) {
          result = await collection1.aggregate(pipeline).toArray();
         return result
     } finally {
-        await  connectToDatabase()
+        await mongoClient.close();
     }
 }
 
 async function getAllWordsForUserWithLevels(login) {
     try {
-
-        const db = await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection1 = db.collection("Words");
         const collection2 = db.collection("WordsLevelForUser");
 
@@ -305,7 +301,7 @@ async function getAllWordsForUserWithLevels(login) {
         let result2 = await collection1.aggregate(pipeline).toArray();
         return result.concat(result2)
     } finally {
-
+        await mongoClient.close();
     }
 }
 
@@ -328,8 +324,8 @@ async function findAllWordsWithoutRule(){
 // ]
 async function findAllWordsForRule(ruleId){
     try {
-
-        const db =   await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection2 = db.collection("WordsAndRules");
 
         const pipeline = [
@@ -361,7 +357,7 @@ async function findAllWordsForRule(ruleId){
     }catch(err) {
         return err;
     } finally {
-
+        await mongoClient.close();
     }
 
 }
@@ -382,8 +378,8 @@ async function findAllWordsForRule(ruleId){
 //   },..]
 async function getAllWordsWithRules() {
     try {
-
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection1 = db.collection("Words");
         const collection2 = db.collection("WordsAndRules");
         const collection3 = db.collection("Rules");
@@ -423,7 +419,7 @@ async function getAllWordsWithRules() {
             return objNew});
 
     } finally {
-
+        await mongoClient.close();
     }
 }
 
@@ -435,7 +431,8 @@ async function getAllWordsWithRules() {
 // }
 async function getRuleForWord(wordId) {
     try {
-        const db =  await  connectToDatabase()
+        await mongoClient.connect();
+        const db = mongoClient.db(DBNAME);
         const collection2 = db.collection("WordsAndRules");
         const collection3 = db.collection("Rules");
 
@@ -477,7 +474,7 @@ async function getRuleForWord(wordId) {
         return result[0].rule[0]
 
     } finally {
-
+        await mongoClient.close();
     }
 
 

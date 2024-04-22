@@ -7,15 +7,7 @@
             <div class="title">Ваша статистика</div>
             <div class="container">
                 <word-levels-stats class="word-stats" :user="true" :all-words="user.allWords"></word-levels-stats>
-                <general-progress></general-progress>
-<!--                <div class="progress-container">-->
-<!--                    <div class="percent-container">{{51}}%</div>-->
-<!--                    <div class="progress-label">{{"Ви на середині шляху"}}</div>-->
-<!--                    <div class="progress-imgs">-->
-<!--                         <img class="progress-image" src="@/assets/progress.svg" alt="progress">-->
-<!--                         <img class="progress-pointer rotating" :style="{ transform: 'translate(-50%) rotate(' + rotation + 'deg)' }" src="@/assets/pointer2.png" alt="progress">-->
-<!--                    </div>-->
-<!--                </div>-->
+                <general-progress :percent="percent" :end-rotation="endRotation"></general-progress>
 
 
             </div>
@@ -44,35 +36,78 @@ export default {
 
     data(){
         return{
+            percent:0,
             rotation:-90,
             user:{
                 login:"Gigi",
-                allWords:[["Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово",
-                    "Слово","Слово","Слово","Слово","Слово","Слово","Слово"
-
-                ],
+                allWords:[[ "Без рівня"],
                     ["Другий рівень"],
                     ["Третій рівень"],
                     ["Четвертий рівень"],
                 ]
-            }
+            },
+            endRotation:15,
         }
     },
     mounted() {
-        setTimeout(()=> /*to do: calculate percentage according to real progress*/ this.rotation = -0, 300)
+        // setTimeout(()=> /*to do: calculate percentage according to real progress*/ this.rotation = this.endRotation, 300)
 
     },
+    methods:{
+      getUserScore(){
+          const options = {
+              method: 'GET',
+              mode:"cors",
+              credentials: 'include'
+          };
+
+          fetch(`http://localhost:3000/user-progress`, options).then(response=>
+              response.json()
+          ).then(data=> {
+
+                  this.percent=data.score
+                  this.endRotation=180*data.score/100-90
+                  setTimeout(()=>this.rotation = this.endRotation, 300)
+
+              }
+          )
+      },
+        getUserWords(){
+          const options = {
+              method: 'GET',
+              mode:"cors",
+              credentials: 'include'
+          };
+
+          fetch(`http://localhost:3000/all-words-with-levels`, options).then(response=>
+              response.json()
+          ).then(data=> {
+
+                let arr0=[]
+                let arr1=[]
+                let arr2=[]
+                let arr3=[]
+                arr0= data.filter(obj=>!obj.hasOwnProperty("level"))
+                arr1= data.filter(obj=>obj["level"]===1)
+                arr2= data.filter(obj=>obj["level"]===2)
+                arr3= data.filter(obj=>obj["level"]===3)
+              this.user.allWords=[arr0,arr1,arr2,arr3]
+
+
+              }
+          )
+      }
+    },
+
     beforeMount() {
         this.getUser().then(data => {
-            console.log(data)
             if(data=== null)
                 this.$router.push("/")
+            else{
+                this.user.login=data.login
+                this.getUserScore()
+                this.getUserWords()
+            }
         })
 
     }

@@ -3,7 +3,7 @@
         <div class="levels">
             <div class="level" @mouseenter="levelMouseEnter(number)"
                  v-bind:class="{ 'active-level':this.currentLevel===number-1, 'cursor':this.user}"
-                 v-for="number in levelsCount">Рівень {{number}}</div>
+                 v-for="number in levelsCount">Рівень {{number-1}}</div>
         </div>
         <div class="words-container">
             <template v-if="!user">
@@ -11,7 +11,11 @@
                 <img class="icon" alt="Недоступно" src="/src/assets/non-visible.svg">
             </template>
             <div class="words">
-                <span  v-for="word in allWords[currentLevel]">{{word+" "}} </span>
+                <div v-if="allWords[currentLevel].length>0">
+                <span  >{{allWords[currentLevel][0].word}} </span>
+                <span  v-for="i in allWords[currentLevel].length-1" >{{", "+(allWords[currentLevel][i]).word}} </span>
+                <span  >. </span>
+                </div>
             </div>
         </div>
     </div>
@@ -37,6 +41,7 @@ export default {
                 this.currentLevel=number-1
         }
     },
+
     data(){
         return {
             currentLevel:0,

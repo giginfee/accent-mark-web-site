@@ -43,7 +43,6 @@ export default createStore({
                 response.json()
             ).then(data=> {
                     this.words=data
-                    console.log("fetched words")
                     data = data.map(obj => {
                         let newObj = {}
                         newObj.id = obj.id

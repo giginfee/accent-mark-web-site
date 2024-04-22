@@ -1,7 +1,7 @@
 <template>
     <div class="progress-container">
-        <div class="percent-container">{{51}}%</div>
-        <div class="progress-label">{{"Ви на середині шляху"}}</div>
+        <div class="percent-container">{{percent}}%</div>
+        <div class="progress-label">{{label}}</div>
         <div class="progress-imgs">
             <img class="progress-image" src="@/assets/progress.svg" alt="progress">
             <img class="progress-pointer rotating" :style="{ transform: 'translate(-50%) rotate(' + rotation + 'deg)' }" src="@/assets/pointer2.png" alt="progress">
@@ -12,13 +12,46 @@
 <script>
 export default {
     name: "GeneralProgress",
+    props:{
+        percent:{
+            type:Number,
+            required: true
+        },
+        endRotation:{
+            type:Number,
+            required: true
+        }
+    },
     data(){
         return{
             rotation:-90
         }
     },
+    computed:{
+        label(){
+            if(this.percent<=25){
+                return "Головне - це не здавайся"
+            }
+            if(this.percent<=40){
+                    return "Молодець, що продовжуєш!"
+            }
+            if(this.percent<=60){
+                    return "Ви на середині шляху"
+            }
+            if(this.percent<=75){
+                    return "Третина шляху вже вважай пройдена!"
+            }
+            if(this.percent<=95){
+                    return "Залишилось зовсім трішки!"
+            }
+            if(this.percent<=100){
+                    return "Твоє навчання завершено, вдалих іспитів!"
+            }
+
+        }
+    },
     mounted() {
-        setTimeout(()=> /*to do: calculate percentage according to real progress*/ this.rotation = -0, 300)
+        setTimeout(()=> this.rotation = this.endRotation, 300)
 
     }
 }

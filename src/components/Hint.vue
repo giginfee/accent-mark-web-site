@@ -1,5 +1,5 @@
 <template>
-    <div @mouseenter="mouseOver" @mouseleave="mouseOut" class="hint-block" v-bind:class="{'hint-block-inactive': rule===undefined,'hint-block-active': rule!==undefined}" >
+    <div @mouseenter="mouseOver" @mouseleave="mouseOut" class="hint-block" v-bind:class="{'hint-block-inactive': !user,'hint-block-active': user}" >
         <div class="hint-pop-up">Переглядати правила у режимі тренування можуть лише зареєстровані користувачі</div>
         <div id="question-mark" ref="question-mark">?</div>
         <div id="rule" ref="rule" class="hidden">{{rule}}</div>
@@ -7,16 +7,35 @@
 </template>
 
 <script>
+import getUserMixin from "@/mixin/getUserMixin.js";
+
 let animationDuration=400
 
 let timers =[]
 export default {
     name: "Hint",
+    mixins:[getUserMixin],
+    data(){
+        return{
+            user:false,
+        }
+    },
     props:{
         rule:{
             type:String,
         }
     },
+    mounted() {
+        this.getUser().then(data => {
+            if (data === null)
+                this.user = false
+            else {
+                this.user = true
+            }
+        })
+
+    },
+
     updated() {
         this.showElem("question-mark",true)
         this.hideElem("rule",true)
@@ -25,7 +44,7 @@ export default {
         mouseOver(){
             this.$emit("hintUsed")
 
-            if(!this.rule)
+            if(!this.user)
                 return
             this.clearAllTimers()
             this.showElem("question-mark",true)
@@ -43,7 +62,7 @@ export default {
 
         },
         mouseOut(){
-            if(!this.rule)
+            if(!this.user)
                 return
             this.clearAllTimers()
             this.hideElem("question-mark",true)
@@ -151,7 +170,7 @@ export default {
     border: var(--hint-block-color) 1px solid;
     border-radius:  var(--border-radius);
     opacity: 0;
-    top:-270%;
+    top:-230%;
     left:-100%;
     width: 250%;
     min-width: 100px;
