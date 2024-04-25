@@ -24,6 +24,7 @@ app.use(authRoutes);
 app.use(dataRoutes);
 app.use(trainingRoutes);
 
+
 app.listen(3000)
 console.log('Server is running on port 3000');
 

@@ -26,5 +26,7 @@ router.get('/all-words-with-levels',authRequired, dataController.allWordsWithLev
 // - all words with levels for user
 router.get('/user-progress',authRequired, dataController.userProgress);
 
+router.post('/record', dataController.createAudio);
+
 
 module.exports = router;

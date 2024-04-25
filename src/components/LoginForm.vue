@@ -67,7 +67,7 @@ export default {
                         return response.text()
                     }
                     else {
-                        let instance = $toast.error('Користувача з таким логіном та паролем не знайдено');
+                        let toast = $toast.error('Користувача з таким логіном та паролем не знайдено');
                         return response.text()
                     }
                 })

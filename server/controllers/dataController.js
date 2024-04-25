@@ -1,6 +1,6 @@
 var db_connect = require('../db/db_connect');
 const jwt = require("../tools/jwtTool");
-
+const fs = require('fs');
 
 module.exports.allWords = async (req, res) => {
     db_connect.getAll("Words").then(data=>{
@@ -26,6 +26,28 @@ module.exports.ruleForWord = async (req, res) => {
     db_connect.getRuleForWord(+req.params.wordId).then(data=>{
         res.status(200).json(data)})
 }
+
+module.exports.createAudio = async (req, res) => {
+    try {
+        if (!req.body) {
+            return res.status(400).send('Відсутнє тіло запиту.');
+        }
+        fs.writeFileSync('file.webm', Buffer.from(req.body.audio.replace('data:audio/webm;codecs=opus;base64,', ''), 'base64'));
+
+        //// do check if the answer is right
+
+        res.status(200).json({answerInd:0});
+
+
+    } catch (error) {
+        console.error('CreateAudio error:', error);
+        res.status(500).send();
+    }
+}
+
+
+
+
 
 module.exports.allWordsWithLevels = async (req, res) => {
     const token = req.cookies.jwt;

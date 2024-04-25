@@ -53,9 +53,9 @@ async function increaseLevel(idWord, login){
     let dateDiff=0
     switch (nextLevel){
         case 1:
-            dateDiff = 5
+            dateDiff = 2
             break
-        case 2: dateDiff=10
+        case 2: dateDiff=7
             break
         case 3: dateDiff=15
             break

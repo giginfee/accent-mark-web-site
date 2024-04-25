@@ -17,6 +17,7 @@ import WordCard from "@/components/WordCard.vue";
 import ProgressLine from "@/components/ProgressLine.vue";
 import Results from "@/components/Results.vue";
 import getUserMixin from "@/mixin/getUserMixin.js";
+import {useToast} from "vue-toast-notification";
 
 export default {
     name: "TrainingSection",
@@ -69,9 +70,11 @@ export default {
                 mode:"cors",
                 credentials: 'include'
             };
-            if(this.user)
-               fetch(`http://localhost:3000/increase-level/${id}`, options).then()
-
+            if(this.user) {
+                fetch(`http://localhost:3000/increase-level/${id}`, options).then()
+                const $toast = useToast();
+                let toast = $toast.success('Слово переведено на вищий рівень');
+            }
         },
         decreaseLevel(id){
 
@@ -80,9 +83,11 @@ export default {
                 mode:"cors",
                 credentials: 'include'
             };
-            if(this.user)
-              fetch(`http://localhost:3000/decrease-level/${id}`, options).then()
-
+            if(this.user) {
+                fetch(`http://localhost:3000/decrease-level/${id}`, options).then()
+                const $toast = useToast();
+                let toast = $toast.error('Слово переведено на нижчий рівень');
+            }
         },
 
         increaseIndex(){
@@ -97,6 +102,8 @@ export default {
                 this.increasedLevel++
                 console.log("переведено")
                 this.increaseLevel(id)
+
+
             }
             this.hintWasUsed=false
 

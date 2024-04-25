@@ -2,6 +2,7 @@
     <div class="word-with-options">
         <div class="word">
             {{word}}
+            <record-button id="record" @voiceAnswer="voiceAnswer" :newWord="true" @startRecord="freezeOptions" @stopRecord="unfreezeOptions" class="record-button"></record-button>
         </div>
         <div class="options" ref="options">
             <button class="option" @click="increaseIndex"
@@ -15,8 +16,11 @@
 </template>
 
 <script>
+import RecordButton from "@/components/RecordButton.vue";
+
 export default {
     name: "WordWithOptions",
+    components: {RecordButton},
     props:{
         word:{
             type:String,
@@ -31,12 +35,31 @@ export default {
             required: true
         }
     },
+
+    updated() {
+        document.getElementById("record").style.pointerEvents="all"
+
+    },
     methods:{
+        voiceAnswer(answerId){
+            setTimeout(()=>this.answerResult(answerId),1000)
+
+        },
+        freezeOptions(){
+            this.$refs.options.style.pointerEvents="none"
+        },
+        unfreezeOptions(){
+            document.getElementById("record").style.pointerEvents="none"
+        },
         increaseIndex(e){
             //show whether the answer was right or wrong
-            let rightAnswer=+(e.target.dataset.index)===this.answerInd
+            this.answerResult(e.target.dataset.index)
+
+        },
+        answerResult(index){
+            let rightAnswer=+(index)===this.answerInd
             let className=rightAnswer?"right":"wrong"
-            e.target.classList.add(className)
+            this.$refs[index][0].classList.add(className)
 
             //let the parent component know whether user chose the right answer
             if(rightAnswer)
@@ -44,9 +67,6 @@ export default {
 
             if(!rightAnswer)
                 this.$emit('wrongAnswer')
-
-
-
 
             //if the answer was wrong, show the right one
             let right=this.$refs[this.answerInd][0]
@@ -56,9 +76,7 @@ export default {
 
             this.$refs.options.style.pointerEvents="none"
 
-
-
-            setTimeout(()=>{e.target.classList.remove(className)
+            setTimeout(()=>{ this.$refs[index][0].classList.remove(className)
 
                 right.classList.remove("right")
                 this.$refs.options.style.pointerEvents="all"
@@ -71,6 +89,13 @@ export default {
 </script>
 
 <style scoped>
+
+img {
+    width: 95%;
+}
+.record-button{
+    margin: auto 10px  auto auto ;
+}
 .word-with-options{
     display: flex;
     flex-direction: column;
