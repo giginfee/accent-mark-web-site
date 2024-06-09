@@ -75,6 +75,7 @@ export default {
     align-items: center;
     transition: transform 0.3s, font-weight 0.1s;
 }
+
 .header-option:hover{
     font-weight: 500;
     transform: translateY(-10%);

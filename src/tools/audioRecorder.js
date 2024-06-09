@@ -34,6 +34,7 @@ let audioRecorder = {
         return new Promise(resolve => {
             let mimeType = audioRecorder.mediaRecorder.mimeType;
 
+
             audioRecorder.mediaRecorder.addEventListener("stop", () => {
                 let audioBlob = new Blob(audioRecorder.audioBlobs, { type: mimeType });
                 resolve(audioBlob);

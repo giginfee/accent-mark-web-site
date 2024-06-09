@@ -186,10 +186,29 @@ async function get50RandomWords() {
 
     return randomWords
 }
+async function get50RandomWordsWithAudio() {
+    let words = await getAll("Words")
+    words= words.filter(obj => obj.options[2].indexOf("або")===-1)
+    if (words.length<=NUMBER)
+        return words
+    const randomWords = getNRandomFromArray(words,NUMBER);
+
+    return randomWords
+}
 
 
 async function get50RandomWordsForUser(login) {
     let words = await getAllWordsForUserToShow(login)
+    if (words.length<=NUMBER)
+        return words
+    const randomWords = getNRandomFromArray(words,NUMBER);
+
+    return randomWords
+}
+
+async function get50RandomWordsForUserWithAudio(login) {
+    let words = await getAllWordsForUserToShow(login)
+    words= words.filter(obj => obj.options[2].indexOf("або")===-1)
     if (words.length<=NUMBER)
         return words
     const randomWords = getNRandomFromArray(words,NUMBER);
@@ -503,6 +522,10 @@ module.exports = {
     // - random 50 words
     get50RandomWordsForUser:get50RandomWordsForUser,
     get50RandomWords:get50RandomWords,
+
+    // - random 50 words with audio
+    get50RandomWordsForUserWithAudio:get50RandomWordsForUserWithAudio,
+    get50RandomWordsWithAudio:get50RandomWordsWithAudio,
 
     // - user by login
     getUserByLogin:getUserByLogin,

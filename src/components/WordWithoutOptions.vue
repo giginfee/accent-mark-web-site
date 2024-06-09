@@ -2,25 +2,27 @@
     <div class="word-with-options">
         <div class="word">
             {{word}}
+            <record-button id="record" @voiceAnswer="voiceAnswer"
+                           :wordId="wordId"
+                           :newWord="true"
+                           @stopRecord="unfreezeOptions"
+                           @recordError="onrecordError"
+                           class="record-button"></record-button>
         </div>
-        <div class="options" ref="options">
-            <button class="option" @click="increaseIndex"
-                    v-bind:class="{'columns-2':i===2}"
-                    :ref="options.indexOf(option)"
-                    v-bind:data-index="options.indexOf(option)"
-                    v-for="(option,i) in options">{{ option}}</button>
         </div>
-
-    </div>
 </template>
 
 <script>
 import RecordButton from "@/components/RecordButton.vue";
-
+import {useToast} from "vue-toast-notification";
 export default {
     name: "WordWithOptions",
     components: {RecordButton},
     props:{
+        wordId: {
+            type: Number,
+            required: true
+         },
         word:{
             type:String,
             required: true
@@ -36,42 +38,39 @@ export default {
     },
 
     updated() {
-
+        document.getElementById("record").style.pointerEvents="all"
 
     },
     methods:{
+        onrecordError(){
+            document.getElementById("record").style.pointerEvents="all"
+        },
 
+        voiceAnswer(answer){
+            setTimeout(()=>this.answerResult(answer),1000)
 
+        },
+        unfreezeOptions(){
+            document.getElementById("record").style.pointerEvents="none"
+        },
         increaseIndex(e){
             //show whether the answer was right or wrong
             this.answerResult(e.target.dataset.index)
 
         },
-        answerResult(index){
-            let rightAnswer=+(index)===this.answerInd
-            let className=rightAnswer?"right":"wrong"
-            this.$refs[index][0].classList.add(className)
-
-            //let the parent component know whether user chose the right answer
-            if(rightAnswer)
+        answerResult(answerId){
+            const $toast = useToast();
+            let rightAnswer=answerId==this.answerInd
+            if(rightAnswer) {
+                let toast = $toast.success('Правильно!');
                 this.$emit('rightAnswer')
-
-            if(!rightAnswer)
+            }
+            if(!rightAnswer) {
+                let toast = $toast.error( `Неправильно, наголос падає на ${this.options[this.answerInd].toLowerCase()} склад!`);
                 this.$emit('wrongAnswer')
 
-            //if the answer was wrong, show the right one
-            let right=this.$refs[this.answerInd][0]
-            if(!right.classList.contains("right"))
-                right.classList.add("right")
-
-
-            this.$refs.options.style.pointerEvents="none"
-
-            setTimeout(()=>{ this.$refs[index][0].classList.remove(className)
-
-                right.classList.remove("right")
-                this.$refs.options.style.pointerEvents="all"
-
+            }
+            setTimeout(()=>{
                 this.$emit('increaseIndex', this.increasedLevel, this.decreasedLevel)}, 1000)
         }
     }
@@ -93,7 +92,7 @@ img {
 }
 
 .word{
-    min-height: 40px;
+    min-height: 20px;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -101,7 +100,7 @@ img {
     font-weight: bold;
     border-radius:  var(--border-radius);
     border: 2px solid var(--training-word-border-color);
-    flex: 0.3;
+    flex: 0.2;
     background-color: white;
     margin: 0 0 4% 0;
 }

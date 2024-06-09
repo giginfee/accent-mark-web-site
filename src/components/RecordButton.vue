@@ -7,9 +7,14 @@
 
 <script>
 import audioRecorder from "/src/tools/audioRecorder.js"
+import {useToast} from "vue-toast-notification";
 export default {
     name: "RecordButton",
-
+    props: {
+        wordId:{
+            type:Number,
+            required:true
+        }},
     data(){
       return{
           recording:false,
@@ -62,8 +67,13 @@ export default {
                 })
                 .catch(error => {
                     console.log(error.name);
-
+                    this.audioRecordError("Проблема при зчитувані голосу. Спробуйте ще раз.")
                 });
+        },
+        audioRecordError(text){
+            this.$emit("recordError")
+            const $toast = useToast();
+            let toast = $toast.error(text);
         },
 
         sendAudioToServer(audio){
@@ -76,19 +86,25 @@ export default {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({audio}),
+                body: JSON.stringify({audio, id:this.wordId}),
             };
 
             fetch('http://localhost:3000/record', options)
-                .then(response =>
-                    response.json()
+                .then(response => {
+                    if(response.status===200)
+                       return  response.json()
+                    else
+                        throw new Error("Response status " + response.status)
+                    }
                 ).then(data=>{
                     console.log("Server answer")
-                    console.log(data.answerInd)
-                    this.$emit("voiceAnswer", data.answerInd)
+                     console.log("answerId")
+                    console.log(data.answerId)
+                    this.$emit("voiceAnswer", data.answerId)
                   })
                 .catch(error => {
                     console.error('Error: ', error);
+                    this.audioRecordError("Проблема при зчитувані голосу. Спробуйте ще раз.")
                 });
         }
     },

@@ -1,12 +1,30 @@
 <template>
     <div class="main">
-         <template v-if="currentIndex<words.length">
+        <div ref="popUp" class="pop-up second-border" v-if="showPopUp">
+            <h3>Пам'ятка, як проходить тест</h3>
+            <div class="pop-up-text">Перед Вами з'являється слово, Вам потрібно правильно вказати його наголос.
+                Два варіанти тренування - перевірка вимови або вибір правильного варіанту. В першому способі натисність на мікрофон та скажіть слово,
+                а система визначить, чи правильно воно наголошено.
+                В другому оберіть той номер складу варіант, на який, як ви вважаєте, падає наголос у слові.
+                <h3>Оберіть спосіб тренування</h3>
+            </div>
+
+            <div class="buttons"><entry-button href="" @click="closePopUp(0)" button-content="Вибір варіанту"></entry-button>
+            <entry-button href="" @click="closePopUp(1)" button-content="Вимова"></entry-button>
+            </div>
+        </div>
+
+         <template v-else-if="currentIndex<words.length ">
+
              <progress-line :progress="currentIndex/words.length*100"></progress-line>
-             <word-card @hintUsed="hintWasUsed=true"
+             <word-card  @hintUsed="hintWasUsed=true"
                         @increaseIndex="increaseIndex"
                         @rightAnswer="rightAnswer"
                         @wrongAnswer="wrongAnswer"
-                        :word="words[currentIndex]"></word-card>
+                        :word="words[currentIndex]"
+                        :option="option"
+             ></word-card>
+
          </template>
           <results :increased-level="increasedLevel" :decreased-level="decreasedLevel" :all-number="words.length" :right-number="rightAnswerCount" v-else></results>
     </div>
@@ -18,13 +36,16 @@ import ProgressLine from "@/components/ProgressLine.vue";
 import Results from "@/components/Results.vue";
 import getUserMixin from "@/mixin/getUserMixin.js";
 import {useToast} from "vue-toast-notification";
+import EntryButton from "@/components/EntryButton.vue";
 
 export default {
     name: "TrainingSection",
-    components: {ProgressLine, WordCard, Results},
+    components: {EntryButton, ProgressLine, WordCard, Results},
     mixins: [getUserMixin],
     data(){
         return{
+            option:0,
+            showPopUp:true,
             user:false,
             hintWasUsed:false,
             increasedLevel:0,
@@ -37,6 +58,9 @@ export default {
             rightAnswerCount:0
         }
     },
+    mounted() {
+    },
+
     beforeMount() {
         //
         this.getUser().then(data => {
@@ -47,22 +71,34 @@ export default {
             }
         })
 
-        const options = {
-            method: 'GET',
-            mode:"cors",
-            credentials: 'include'
-        };
 
-        fetch(`http://localhost:3000/random-50-words`, options).then(response=>
-            response.json()
-        ).then(data=> {
-            this.words=data
-            }
-        )
 
 
     },
     methods:{
+        closePopUp(option){
+            this.option=option
+            this.$refs["popUp"].classList += " pop-up-hide"
+            setTimeout(()=>this.showPopUp=false, 1000)
+            const options = {
+                method: 'GET',
+                mode:"cors",
+                credentials: 'include'
+            };
+            let withAudio=option===1?"-with-audio":""
+
+            fetch(`http://localhost:3000/random-50-words${withAudio}`, options).then(response=>
+                response.json()
+            ).then(data=> {
+
+                    this.words=data.map(x=>{
+                        let newWord=x
+                        newWord.word=newWord.word.toLowerCase()
+                        return newWord
+                    })
+                }
+            )
+        },
         increaseLevel(id){
 
             const options = {
@@ -87,6 +123,7 @@ export default {
                 fetch(`http://localhost:3000/decrease-level/${id}`, options).then()
                 const $toast = useToast();
                 let toast = $toast.error('Слово переведено на нижчий рівень');
+
             }
         },
 
@@ -123,9 +160,38 @@ export default {
 </script>
 
 <style scoped>
-.main{
-    width: 100%;
-    flex: 1;
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /*margin: 15px 0 0 0;*/
+}
+.pop-up-hide{
+    opacity:0
 
 }
+.pop-up{
+        width: 70%;
+        margin: auto;
+        margin-top: 90px;
+        padding: 10px 30px 30px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: solid var(--training-word-border-color) 2px ;
+        border-radius: 15px;
+        text-align: center;
+        transition: opacity 1s;
+    }
+
+
+    .main{
+        width: 100%;
+        flex: 1;
+
+    }
+
 </style>

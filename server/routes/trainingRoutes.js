@@ -13,6 +13,7 @@ router.post('/decrease-level/:wordId',authRequired, trainingController.decreaseL
 
 // - random 50 words
 router.get('/random-50-words', trainingController.getRandom50Words);
+router.get('/random-50-words-with-audio', trainingController.getRandom50WordsWithAudio);
 
 module.exports = router;
 

@@ -1,6 +1,8 @@
 var db_connect = require('../db/db_connect');
 const jwt = require("../tools/jwtTool");
+const audioCompare = require("../tools/compareAudio");
 const fs = require('fs');
+
 
 module.exports.allWords = async (req, res) => {
     db_connect.getAll("Words").then(data=>{
@@ -32,11 +34,17 @@ module.exports.createAudio = async (req, res) => {
         if (!req.body) {
             return res.status(400).send('Відсутнє тіло запиту.');
         }
+        let wordId=req.body.id
+
         fs.writeFileSync('file.webm', Buffer.from(req.body.audio.replace('data:audio/webm;codecs=opus;base64,', ''), 'base64'));
+        audioCompare.convertToWav('file').then(async()=>
+        {
 
-        //// do check if the answer is right
+            let answerId= await audioCompare.getAnswerId("file.wav",wordId)
 
-        res.status(200).json({answerInd:0});
+            res.status(200).json({answerId, cost3:0, result:0<=1000});
+        })
+
 
 
     } catch (error) {

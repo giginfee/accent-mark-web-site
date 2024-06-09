@@ -60,6 +60,25 @@ module.exports.getRandom50Words = async (req, res) => {
             res.status(200).json(data)})
     }
 }
+module.exports.getRandom50WordsWithAudio = async (req, res) => {
+    const token = req.cookies.jwt;
+
+    if (token) {
+        jwt.verify(token, (err, decodedToken) => {
+            if (err) {
+                db_connect.get50RandomWordsWithAudio().then(data=>{
+                    res.status(200).json(data)})
+            } else {
+                let login=decodedToken.login
+                db_connect.get50RandomWordsForUserWithAudio( login).then(data=>{
+                    res.status(200).json(data)})
+            }
+        });
+    } else {
+        db_connect.get50RandomWordsWithAudio().then(data=>{
+            res.status(200).json(data)})
+    }
+}
 
 
 

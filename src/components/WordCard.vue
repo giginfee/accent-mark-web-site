@@ -1,6 +1,9 @@
 <template>
     <div class="word-card" v-bind:class="{ gap: word.level ===undefined }">
-        <word-with-options @increaseIndex="increaseIndex" @wrongAnswer="wrongAnswer" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-with-options>
+        <word-with-options v-if="option===0" @increaseIndex="increaseIndex" @wrongAnswer="wrongAnswer" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-with-options>
+        <word-without-options v-else-if="option===1"
+                              :wordId="word.id"
+                              @increaseIndex="increaseIndex" @wrongAnswer="wrongAnswer" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-without-options>
         <levels v-if="user" :level=level></levels>
         <hint @hintUsed="$emit('hintUsed')" :rule=rule></hint>
 
@@ -11,6 +14,7 @@
 
 
 import WordWithOptions from "@/components/WordWithOptions.vue";
+import WordWithoutOptions from "@/components/WordWithoutOptions.vue";
 import Hint from "@/components/Hint.vue";
 import Levels from "@/components/Levels.vue";
 import getUserMixin from "@/mixin/getUserMixin.js";
@@ -18,11 +22,12 @@ import getUserMixin from "@/mixin/getUserMixin.js";
 export default {
     name: "WordCard",
     components:{
-        WordWithOptions,Hint,Levels
+        WordWithOptions,Hint,Levels,WordWithoutOptions
     },
     mixins: [getUserMixin],
 
     props:{
+        option:{type:Number,required:true},
         word:{
             id:Number,
             answerInd:Number,
