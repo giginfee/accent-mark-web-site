@@ -19,7 +19,7 @@ dotenv.config({ path:  './config.env'});
 
 
 app.use(cors({
-    origin: "https://master--accent-mark-web-site.netlify.app/",
+    origin: "https://master--accent-mark-web-site.netlify.app",
     credentials: true,
     'exposedHeaders': ['Accept', "jwt"],
 }))
