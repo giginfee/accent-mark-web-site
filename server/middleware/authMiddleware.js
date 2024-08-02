@@ -7,10 +7,10 @@ const authRequired = (req, res, next) => {
     if (token) {
         jwt.verify(token,  (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                // console.log(err.message);
                 res.sendStatus(401);
             } else {
-                console.log(decodedToken);
+                // console.log(decodedToken);
                 next();
             }
         });

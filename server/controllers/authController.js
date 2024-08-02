@@ -20,7 +20,7 @@ module.exports.signup = async (req, res) => {
         if(created){
             const TOKEN = jwt.createToken(login)
 
-            console.log(TOKEN)
+            // console.log(TOKEN)
             res.cookie('jwt', TOKEN, { maxAge: jwt.MAXAGE * 1000 });
             res.setHeader('jwt', TOKEN);
             res.status(201).send(`User ${login} created`)

@@ -57,8 +57,7 @@ export default {
 
     },
     updated() {
-        console.log("this.endRotation")
-        console.log(this.endRotation)
+
         setTimeout(()=> this.rotation = this.endRotation, 300)
     }
 

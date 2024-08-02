@@ -72,7 +72,6 @@ export default {
                     }
                 })
                 .then(data => {
-                    console.log(data)
                 })
                 .catch(error => console.error('Помилка:', error));
         }

@@ -157,8 +157,7 @@ async function addNewUser(login, password) {
         await mongoClient.connect();
         const db = mongoClient.db(DBNAME);
         const collection = db.collection("Users");
-        console.log("user")
-        console.log(user)
+
         if(!user) {
             await collection.insertOne({login, password});
             return true

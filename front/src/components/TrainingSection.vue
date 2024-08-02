@@ -118,10 +118,13 @@ export default {
                 credentials: 'include'
             };
             if(this.user) {
-                console.log(this.words)
-                fetch(`${import.meta.env.VITE_API_URL}/decrease-level/${id}`, options).then()
-                const $toast = useToast();
-                let toast = $toast.error('Слово переведено на нижчий рівень');
+                if(this.words[this.currentIndex].hasOwnProperty("level")&& this.word.level!==0) {
+                    fetch(`${import.meta.env.VITE_API_URL}/decrease-level/${id}`, options).then()
+                    const $toast = useToast();
+                    let toast = $toast.error('Слово переведено на нижчий рівень');
+                    this.decreasedLevel++
+                }
+
 
             }
         },
@@ -144,7 +147,7 @@ export default {
 
         },
         wrongAnswer(id){
-            this.decreasedLevel++
+
 
             this.decreaseLevel(id)
 

@@ -39,7 +39,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.decreasedLevel)
         this.$refs.right.style.width = (this.rightNumber/this.allNumber*100)+'%';
     }
 }

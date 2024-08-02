@@ -44,7 +44,7 @@ export default {
                         alert("Ваш браузер не підтримує запис.");
                         return
                     }
-                    console.log("An error occured " + error.name);
+                    // console.log("An error occured " + error.name);
 
                     // to do: скинути все на початок
                     }
@@ -53,7 +53,7 @@ export default {
         },
         stopRecord(){
             clearTimeout(this.stopTimeout);
-            console.log("Stopping Audio Recording...");
+            // console.log("Stopping Audio Recording...");
 
             audioRecorder.stop()
                 .then(audioAsblob => {

@@ -45,7 +45,6 @@ export default {
             response.json()
         ).then(data=> {
             this.words=data.map(obj=>obj.word)
-            console.log(data.map(obj=>obj.word))
             this.renderWordsArray();
         })
 

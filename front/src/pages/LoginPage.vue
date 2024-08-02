@@ -28,7 +28,6 @@ export default {
         }},
     beforeMount() {
         this.getUser().then(data => {
-            console.log(data)
             if(data!== null)
                 this.$router.push("/")
         })

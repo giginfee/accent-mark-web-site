@@ -83,10 +83,10 @@ module.exports.allWordsWithLevels = async (req, res) => {
     if (token) {
         jwt.verify(token, (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                // console.log(err.message);
                 res.sendStatus(401);
             } else {
-                console.log(decodedToken);
+                // console.log(decodedToken);
                 let login=decodedToken.login
                 db_connect.getAllWordsForUserWithLevels(login, db).then(data=>{
 
@@ -103,10 +103,10 @@ module.exports.userProgress = async (req, res) => {
     if (token) {
         jwt.verify(token, (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                // console.log(err.message);
                 res.sendStatus(401);
             } else {
-                console.log(decodedToken);
+                // console.log(decodedToken);
                 let login=decodedToken.login
                 db_connect.getAllWordsForUserWithLevels(login, db).then(data=>{
                     let maxScore=data.length*3

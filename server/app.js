@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const dataRoutes = require('./routes/dataRoutes');
@@ -22,6 +23,7 @@ app.use(cors({
     credentials: true,
     'exposedHeaders': ['Accept', "jwt"],
 }))
+app.use(compression())
 app.use(cookieParser())
 app.use(express.json());
 
@@ -44,10 +46,10 @@ app.get("/user", authRequired, (req,res)=>{
     if (token) {
         jwt.verify(token, (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                // console.log(err.message);
                 res.sendStatus(401);
             } else {
-                console.log(decodedToken);
+                // console.log(decodedToken);
                 res.status(200).json(
                     {
                     login:decodedToken.login
@@ -58,3 +60,10 @@ app.get("/user", authRequired, (req,res)=>{
         res.sendStatus(401)
     }
 })
+
+process.on('SIGTERM', () => {
+    console.log('👋 SIGTERM RECEIVED. Shutting down gracefully');
+    app.close(() => {
+        console.log('💥 Process terminated!');
+    });
+});

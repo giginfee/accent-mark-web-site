@@ -18,7 +18,7 @@ module.exports.increaseLevel = async (req, res) => {
     if (token) {
         jwt.verify(token, (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                // console.log(err.message);
                 res.sendStatus(401);
             } else {
                 let login=decodedToken.login
@@ -41,7 +41,7 @@ module.exports.decreaseLevel = async (req, res) => {
     if (token) {
         jwt.verify(token, (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                // console.log(err.message);
                 res.sendStatus(401);
             } else {
                 let login=decodedToken.login

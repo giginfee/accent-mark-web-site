@@ -14,7 +14,6 @@ module.exports.getAnswerId= async (fileNameTest, wordId, window=8192)=>{
 
     try {
         const files = fs.readdirSync(directory);
-        console.log(files)
         let answerFile=files[0]
         let cost=Infinity
         for(let file of files){
@@ -25,10 +24,8 @@ module.exports.getAnswerId= async (fileNameTest, wordId, window=8192)=>{
                 cost = costCurr
                 answerFile=file
             }
-            console.log("cost ", file)
-            console.log(costCurr)
         }
-        console.log("answer: ", answerFile[0])
+        // console.log("answer: ", answerFile[0])
         return answerFile[0]
     } catch (error) {
         console.error(`Помилка при отриманні файлів з директорії: ${error}`);
@@ -64,7 +61,6 @@ module.exports.convertToWav=(inputFile)=> {
                 .format('wav')
                 .outputOptions('-acodec pcm_s16le')
                 .on('end', function () {
-                    console.log('Conversion finished')
                     resolve('Conversion finished');
                 })
                 .on('error', function (err) {

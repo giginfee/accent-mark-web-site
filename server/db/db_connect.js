@@ -10,7 +10,6 @@ async function connectToDatabase() {
         '<password>',
         process.env.MONGO_PASSWORD
     );
-    console.log(DB)
     const client = new MongoClient(DB);
     await client.connect().then(() => console.log('DB connection successful! From db_connect')).catch(err=>console.log(err));
     return client.db(DBNAME);
@@ -160,8 +159,6 @@ async function addNewUser(login, password, db) {
     try {
 
         const collection = db.collection("Users");
-        console.log("user")
-        console.log(user)
         if(!user) {
             await collection.insertOne({login, password});
             return true
