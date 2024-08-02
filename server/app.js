@@ -19,7 +19,7 @@ dotenv.config({ path:  './config.env'});
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://master--accent-mark-web-site.netlify.app/",
     credentials: true,
     'exposedHeaders': ['Accept', "jwt"],
 }))
