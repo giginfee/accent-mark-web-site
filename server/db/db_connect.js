@@ -1,21 +1,27 @@
+const dotenv = require("dotenv");
 const MongoClient = require('mongodb').MongoClient;
-
-
+dotenv.config({ path:  './config.env'});
 
 
 
 const DBNAME="AccentMark"
 async function connectToDatabase() {
-    const client = new MongoClient("mongodb://127.0.0.1:27017/");
-    await client.connect();
+    const DB = process.env.MONGO_URL.replace(
+        '<password>',
+        process.env.MONGO_PASSWORD
+    );
+    console.log(DB)
+    const client = new MongoClient(DB);
+    await client.connect().then(() => console.log('DB connection successful! From db_connect')).catch(err=>console.log(err));
     return client.db(DBNAME);
 }
 
-decreaseLevel(3, "adm").then()
-async function getShowDate(idWord, login){
+
+
+// decreaseLevel(3, "adm").then()
+async function getShowDate(idWord, login, db){
     try {
 
-        const db = await  connectToDatabase()
         const collection = db.collection("WordsLevelForUser");
         const cursor = await collection.find({ login, idWord }).toArray();
         if(cursor.length===0)
@@ -28,10 +34,9 @@ async function getShowDate(idWord, login){
     }
 }
 
-async function getLevel(idWord, login){
+async function getLevel(idWord, login, db){
     try {
 
-        const db =  await  connectToDatabase()
         const collection = db.collection("WordsLevelForUser");
         const cursor = await collection.find({ login, idWord }).toArray();
         if(cursor.length===0)
@@ -46,9 +51,9 @@ async function getLevel(idWord, login){
 
 
 
-async function increaseLevel(idWord, login){
+async function increaseLevel(idWord, login, db){
     let nextShowDate =new Date()
-    let nextLevel=await getLevel(idWord, login)+1
+    let nextLevel=await getLevel(idWord, login, db)+1
     nextLevel=nextLevel===4?3:nextLevel
     let dateDiff=0
     switch (nextLevel){
@@ -64,7 +69,6 @@ async function increaseLevel(idWord, login){
 
     try {
 
-        const db =  await  connectToDatabase()
         let collection = db.collection("WordsLevelForUser");
         if(nextLevel===1){
             await collection.insertOne({idWord, login, nextShowDate, level:nextLevel})
@@ -81,15 +85,14 @@ async function increaseLevel(idWord, login){
     }
 
 }
-async function decreaseLevel(idWord, login){
+async function decreaseLevel(idWord, login, db){
     let nextShowDate =new Date()
-    let nextLevel=await getLevel(idWord, login)-1
+    let nextLevel=await getLevel(idWord, login, db)-1
     nextLevel=nextLevel===-1?0:nextLevel
 
 
     try {
 
-        const db = await  connectToDatabase()
         let collection = db.collection("WordsLevelForUser");
         if(nextLevel===0){
             await collection.deleteOne({idWord, login})
@@ -109,10 +112,9 @@ async function decreaseLevel(idWord, login){
 
 
 
-async function getAll(collName) {
+async function getAll(collName, db) {
     try {
 
-        const db =  await  connectToDatabase()
         const collection = db.collection(collName);
         const cursor = collection.find();
         return await cursor.toArray();
@@ -122,10 +124,9 @@ async function getAll(collName) {
 
     }
 }
-async function getUserByLogin(login) {
+async function getUserByLogin(login, db) {
     try {
 
-        const db =  await  connectToDatabase()
         const collection = db.collection("Users");
         const cursor = collection.find({ login: login });
         let res= await cursor.toArray();
@@ -138,10 +139,9 @@ async function getUserByLogin(login) {
 
     }
 }
-async function getWordById(id) {
+async function getWordById(id, db) {
     try {
 
-        const db = await  connectToDatabase()
         const collection = db.collection("Words");
         const cursor = collection.find({ id });
         let res= await cursor.toArray();
@@ -155,11 +155,10 @@ async function getWordById(id) {
     }
 }
 
-async function addNewUser(login, password) {
-    let user = await getUserByLogin(login)
+async function addNewUser(login, password, db) {
+    let user = await getUserByLogin(login, db)
     try {
 
-        const db = await  connectToDatabase()
         const collection = db.collection("Users");
         console.log("user")
         console.log(user)
@@ -178,16 +177,16 @@ async function addNewUser(login, password) {
 
 
 const NUMBER=10
-async function get50RandomWords() {
-    let words = await getAll("Words")
+async function get50RandomWords(db) {
+    let words = await getAll("Words", db)
     if (words.length<=NUMBER)
         return words
     const randomWords = getNRandomFromArray(words,NUMBER);
 
     return randomWords
 }
-async function get50RandomWordsWithAudio() {
-    let words = await getAll("Words")
+async function get50RandomWordsWithAudio( db) {
+    let words = await getAll("Words", db)
     words= words.filter(obj => obj.options[2].indexOf("або")===-1)
     if (words.length<=NUMBER)
         return words
@@ -197,8 +196,8 @@ async function get50RandomWordsWithAudio() {
 }
 
 
-async function get50RandomWordsForUser(login) {
-    let words = await getAllWordsForUserToShow(login)
+async function get50RandomWordsForUser(login, db) {
+    let words = await getAllWordsForUserToShow(login, db)
     if (words.length<=NUMBER)
         return words
     const randomWords = getNRandomFromArray(words,NUMBER);
@@ -206,8 +205,8 @@ async function get50RandomWordsForUser(login) {
     return randomWords
 }
 
-async function get50RandomWordsForUserWithAudio(login) {
-    let words = await getAllWordsForUserToShow(login)
+async function get50RandomWordsForUserWithAudio(login, db) {
+    let words = await getAllWordsForUserToShow(login, db)
     words= words.filter(obj => obj.options[2].indexOf("або")===-1)
     if (words.length<=NUMBER)
         return words
@@ -233,10 +232,9 @@ function getNRandomFromArray(array,n){
 }
 
 
-async function getAllWordsForUserToShow(login) {
+async function getAllWordsForUserToShow(login, db) {
     try {
 
-        const db =  await  connectToDatabase()
         const collection1 = db.collection("Words");
         const collection2 = db.collection("WordsLevelForUser");
 
@@ -265,14 +263,13 @@ async function getAllWordsForUserToShow(login) {
          result = await collection1.aggregate(pipeline).toArray();
         return result
     } finally {
-        await  connectToDatabase()
+        // await  connectToDatabase()
     }
 }
 
-async function getAllWordsForUserWithLevels(login) {
+async function getAllWordsForUserWithLevels(login, db) {
     try {
 
-        const db = await  connectToDatabase()
         const collection1 = db.collection("Words");
         const collection2 = db.collection("WordsLevelForUser");
 
@@ -328,9 +325,9 @@ async function getAllWordsForUserWithLevels(login) {
     }
 }
 
-async function findAllWordsWithoutRule(){
-    let words = await getAll("Words")
-    let wordsAndRules = await getAll("WordsAndRules")
+async function findAllWordsWithoutRule( db){
+    let words = await getAll("Words", db)
+    let wordsAndRules = await getAll("WordsAndRules", db)
     const uniqueIds = new Set(wordsAndRules.map(obj => obj.idWord));
     return words.filter(obj => !uniqueIds.has(obj.id));
 }
@@ -345,10 +342,9 @@ async function findAllWordsWithoutRule(){
 //     options: [ 'Другий', 'Третій', 'Другий або третій' ]
 //   },...
 // ]
-async function findAllWordsForRule(ruleId){
+async function findAllWordsForRule(ruleId, db){
     try {
 
-        const db =   await  connectToDatabase()
         const collection2 = db.collection("WordsAndRules");
 
         const pipeline = [
@@ -399,10 +395,9 @@ async function findAllWordsForRule(ruleId){
 //       text: 'У деяких словах наголос змінюється залежно від значення.'
 //     }
 //   },..]
-async function getAllWordsWithRules() {
+async function getAllWordsWithRules( db) {
     try {
 
-        const db =  await  connectToDatabase()
         const collection1 = db.collection("Words");
         const collection2 = db.collection("WordsAndRules");
         const collection3 = db.collection("Rules");
@@ -452,9 +447,8 @@ async function getAllWordsWithRules() {
 //   id: 16,
 //   text: 'У прикметників (особливо коротких) зазвичай наголос падає на останній склад -Ий.'
 // }
-async function getRuleForWord(wordId) {
+async function getRuleForWord(wordId, db) {
     try {
-        const db =  await  connectToDatabase()
         const collection2 = db.collection("WordsAndRules");
         const collection3 = db.collection("Rules");
 
@@ -506,6 +500,7 @@ async function getRuleForWord(wordId) {
 
 
 module.exports = {
+    connectToDatabase,
     //- all words
     // - all rules
     getAll: getAll,

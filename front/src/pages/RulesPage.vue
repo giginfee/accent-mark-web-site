@@ -32,7 +32,7 @@ export default {
             credentials: 'include'
         };
 
-        fetch(`http://localhost:3000/all-rules`, options).then(response=>
+        fetch(`${import.meta.env.VITE_API_URL}/all-rules`, options).then(response=>
             response.json()
         ).then(data=> {
                 console.log(data)

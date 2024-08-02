@@ -58,19 +58,19 @@ export default {
                 credentials: 'include'
             };
 
-            fetch(`http://localhost:3000/word/${this.$route.params.id}`, options).then(response=>
+            fetch(`${import.meta.env.VITE_API_URL}/word/${this.$route.params.id}`, options).then(response=>
                 response.json()
             ).then(data=> {
                     this.word.word=data.word
 
                 }
             )
-            fetch(`http://localhost:3000/rule-for-word/${this.$route.params.id}`, options).then(response=>
+            fetch(`${import.meta.env.VITE_API_URL}/rule-for-word/${this.$route.params.id}`, options).then(response=>
                 response.json()
             ).then(data=> {
                     this.word.rule=data
                     if (this.word.rule.id.length!==0)
-                        fetch(`http://localhost:3000/words-for-rule/${this.word.rule.id}`, options).then(response=>
+                        fetch(`${import.meta.env.VITE_API_URL}/words-for-rule/${this.word.rule.id}`, options).then(response=>
                             response.json()
                         ).then(data=> {
 

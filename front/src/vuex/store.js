@@ -3,10 +3,7 @@ import {createStore} from "vuex"
 export default createStore({
     state:{
         user:null,
-        words:[{
-            word:"gh",
-            id:0
-        }]
+        words:[]
     },
     mutations:{
         user(state,user){
@@ -39,7 +36,7 @@ export default createStore({
                 credentials: 'include'
             };
 
-            fetch("http://localhost:3000/all-words", options).then(response=>
+            fetch(`${import.meta.env.VITE_API_URL}/all-words`, options).then(response=>
                 response.json()
             ).then(data=> {
                     this.words=data

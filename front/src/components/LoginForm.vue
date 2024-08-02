@@ -55,7 +55,7 @@ export default {
 
             };
             const $toast = useToast();
-            fetch("http://localhost:3000/login", options)
+            fetch(`${import.meta.env.VITE_API_URL}/login`, options)
                 .then(response => {
                     if(response.status===200) {
                         let jwt=response.headers.get("jwt")

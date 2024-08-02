@@ -16,8 +16,8 @@
                 <div class="input-wrapper">
                     <input  type="password" v-model="checkPassword" class="input second-border">
                 </div>
-                <entry-button href="" @click="signup" button-content="Зареєструватись"></entry-button>
             </form>
+            <entry-button href="" @click="signup" button-content="Зареєструватись"></entry-button>
 
 
         </div>
@@ -55,7 +55,7 @@ export default {
 
                 };
                 const $toast = useToast();
-                fetch("http://localhost:3000/signup", options)
+                fetch(`${import.meta.env.VITE_API_URL}/signup`, options)
                     .then(response => {
                         if(response.status===201) {
                             let jwt=response.headers.get("jwt")

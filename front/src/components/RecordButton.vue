@@ -89,7 +89,7 @@ export default {
                 body: JSON.stringify({audio, id:this.wordId}),
             };
 
-            fetch('http://localhost:3000/record', options)
+            fetch( `${import.meta.env.VITE_API_URL}/record`, options)
                 .then(response => {
                     if(response.status===200)
                        return  response.json()

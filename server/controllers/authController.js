@@ -2,10 +2,21 @@ var db_connect = require('../db/db_connect');
 let hashPassword = require('../tools/hashPassword');
 let jwt = require('../tools/jwtTool');
 
+let db
+
+
+async function checkConnection(){
+    if (!db){
+        db = await db_connect.connectToDatabase()
+    }
+
+}
 module.exports.signup = async (req, res) => {
+    await checkConnection()
+
     let {login,password}= req.body
     password = await hashPassword.hash(password)
-    db_connect.addNewUser(login,password).then(created=>{
+    db_connect.addNewUser(login,password, db).then(created=>{
         if(created){
             const TOKEN = jwt.createToken(login)
 
@@ -22,10 +33,10 @@ module.exports.signup = async (req, res) => {
 }
 
 module.exports.login = async (req, res) => {
-
+    await checkConnection()
 
     let {login,password}= req.body
-    db_connect.getUserByLogin(login).then(user=>{
+    db_connect.getUserByLogin(login, db).then(user=>{
         if(user){
             hashPassword.compare(password, user.password).then(auth=>{
                 if(auth) {

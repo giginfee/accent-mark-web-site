@@ -41,7 +41,7 @@ export default {
             credentials: 'include'
         };
 
-        fetch(`http://localhost:3000/words-for-rule/${this.rule.id}`, options).then(response=>
+        fetch(`${import.meta.env.VITE_API_URL}/words-for-rule/${this.rule.id}`, options).then(response=>
             response.json()
         ).then(data=> {
             this.words=data.map(obj=>obj.word)

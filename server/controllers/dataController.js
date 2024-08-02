@@ -3,33 +3,53 @@ const jwt = require("../tools/jwtTool");
 const audioCompare = require("../tools/compareAudio");
 const fs = require('fs');
 
+let db
 
+
+async function checkConnection(){
+    if (!db){
+        db = await db_connect.connectToDatabase()
+    }
+
+}
 module.exports.allWords = async (req, res) => {
-    db_connect.getAll("Words").then(data=>{
+    await checkConnection()
+
+    db_connect.getAll("Words", db).then(data=>{
         res.status(200).json(data)})
 }
 
 module.exports.allRules = async (req, res) => {
-    db_connect.getAll("Rules").then(data=>{
+    await checkConnection()
+
+    db_connect.getAll("Rules", db).then(data=>{
         res.status(200).json(data)})
 }
 
 module.exports.wordsForRule = async (req, res) => {
-    db_connect.findAllWordsForRule(+req.params.ruleId).then(data=>{
+    await checkConnection()
+
+    db_connect.findAllWordsForRule(+req.params.ruleId, db).then(data=>{
         res.status(200).json(data)})
 }
 
 module.exports.wordById = async (req, res) => {
-    db_connect.getWordById(+req.params.wordId).then(data=>{
+    await checkConnection()
+
+    db_connect.getWordById(+req.params.wordId, db).then(data=>{
         res.status(200).json(data)})
 }
 
 module.exports.ruleForWord = async (req, res) => {
-    db_connect.getRuleForWord(+req.params.wordId).then(data=>{
+    await checkConnection()
+
+    db_connect.getRuleForWord(+req.params.wordId, db).then(data=>{
         res.status(200).json(data)})
 }
 
 module.exports.createAudio = async (req, res) => {
+    await checkConnection()
+
     try {
         if (!req.body) {
             return res.status(400).send('Відсутнє тіло запиту.');
@@ -68,7 +88,7 @@ module.exports.allWordsWithLevels = async (req, res) => {
             } else {
                 console.log(decodedToken);
                 let login=decodedToken.login
-                db_connect.getAllWordsForUserWithLevels(login).then(data=>{
+                db_connect.getAllWordsForUserWithLevels(login, db).then(data=>{
 
                     res.status(200).json(data)})
             }
@@ -88,7 +108,7 @@ module.exports.userProgress = async (req, res) => {
             } else {
                 console.log(decodedToken);
                 let login=decodedToken.login
-                db_connect.getAllWordsForUserWithLevels(login).then(data=>{
+                db_connect.getAllWordsForUserWithLevels(login, db).then(data=>{
                     let maxScore=data.length*3
                     let score=0
                     for(let word of data){

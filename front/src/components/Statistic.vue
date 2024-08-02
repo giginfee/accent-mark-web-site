@@ -35,7 +35,7 @@ export default {
                 credentials: 'include'
             };
 
-            fetch(`http://localhost:3000/all-words-with-levels`, options).then(response=>
+            fetch(`${import.meta.env.VITE_API_URL}/all-words-with-levels`, options).then(response=>
                 response.json()
             ).then(data=> {
 

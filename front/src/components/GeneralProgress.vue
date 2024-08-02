@@ -24,9 +24,12 @@ export default {
     },
     data(){
         return{
-            rotation:-90
+            // percent:0,
+            rotation:-90,
+            // endRotation:20,
         }
     },
+
     computed:{
         label(){
             if(this.percent<=25){
@@ -51,9 +54,14 @@ export default {
         }
     },
     mounted() {
-        setTimeout(()=> this.rotation = this.endRotation, 300)
 
+    },
+    updated() {
+        console.log("this.endRotation")
+        console.log(this.endRotation)
+        setTimeout(()=> this.rotation = this.endRotation, 300)
     }
+
 }
 </script>
 

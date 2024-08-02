@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^3.2.1",
+    "@vue/cli": "^5.0.8",
     "audio-compare": "^1.0.1",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",

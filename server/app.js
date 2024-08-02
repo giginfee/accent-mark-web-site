@@ -1,4 +1,5 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const dataRoutes = require('./routes/dataRoutes');
 const trainingRoutes = require('./routes/trainingRoutes');
@@ -10,6 +11,10 @@ var bodyParser = require('body-parser')
 var jwt = require('./tools/jwtTool')
 var db_connect = require('./db/db_connect');
 var {authRequired} = require('./middleware/authMiddleware');
+const {resolve} = require("path");
+
+dotenv.config({ path:  './config.env'});
+
 
 
 app.use(cors({
@@ -25,8 +30,13 @@ app.use(dataRoutes);
 app.use(trainingRoutes);
 
 
-app.listen(3000)
-console.log('Server is running on port 3000');
+const port = process.env.PORT || 3000;
+
+app.listen(port,()=>{
+
+    console.log(`Server is running on port ${port}`);
+})
+
 
 app.get("/user", authRequired, (req,res)=>{
     const token = req.cookies.jwt;

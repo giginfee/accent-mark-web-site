@@ -1,9 +1,9 @@
 <template>
     <div class="word-card" v-bind:class="{ gap: word.level ===undefined }">
         <word-with-options v-if="option===0" @increaseIndex="increaseIndex" @wrongAnswer="wrongAnswer" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-with-options>
-        <word-without-options v-else-if="option===1"
-                              :wordId="word.id"
-                              @increaseIndex="increaseIndex" @wrongAnswer="wrongAnswer" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-without-options>
+<!--        <word-without-options v-else-if="option===1"-->
+<!--                              :wordId="word.id"-->
+<!--                              @increaseIndex="increaseIndex" @wrongAnswer="wrongAnswer" @rightAnswer="rightAnswer" :answerInd= word.answerInd :word=word.word :options="word.options"></word-without-options>-->
         <levels v-if="user" :level=level></levels>
         <hint @hintUsed="$emit('hintUsed')" :rule=rule></hint>
 
@@ -65,7 +65,7 @@ export default {
                 mode:"cors",
                 credentials: 'include'
             };
-            fetch(`http://localhost:3000/rule-for-word/${this.word.id}`, options).then(response=>
+            fetch(`${import.meta.env.VITE_API_URL}/rule-for-word/${this.word.id}`, options).then(response=>
                 response.json()
             ).then(data=> {
                     this.rule=data.text

@@ -2,15 +2,13 @@
     <div class="main">
         <div ref="popUp" class="pop-up second-border" v-if="showPopUp">
             <h3>Пам'ятка, як проходить тест</h3>
-            <div class="pop-up-text">Перед Вами з'являється слово, Вам потрібно правильно вказати його наголос.
-                Два варіанти тренування - перевірка вимови або вибір правильного варіанту. В першому способі натисність на мікрофон та скажіть слово,
-                а система визначить, чи правильно воно наголошено.
-                В другому оберіть той номер складу варіант, на який, як ви вважаєте, падає наголос у слові.
-                <h3>Оберіть спосіб тренування</h3>
+            <div class="pop-up-text">Перед вами з'являється слово, вам потрібно правильно вказати його наголос.
+                Оберіть той варіант з номером складу, на який, як ви вважаєте, падає наголос у слові.<br>
+
             </div>
 
-            <div class="buttons"><entry-button href="" @click="closePopUp(0)" button-content="Вибір варіанту"></entry-button>
-            <entry-button href="" @click="closePopUp(1)" button-content="Вимова"></entry-button>
+            <div class="buttons"><entry-button href="" @click="closePopUp(0)" button-content="Почати"></entry-button>
+<!--            <entry-button href="" @click="closePopUp(1)" button-content="Вимова"></entry-button>-->
             </div>
         </div>
 
@@ -22,7 +20,7 @@
                         @rightAnswer="rightAnswer"
                         @wrongAnswer="wrongAnswer"
                         :word="words[currentIndex]"
-                        :option="option"
+                        :option="0"
              ></word-card>
 
          </template>
@@ -87,7 +85,7 @@ export default {
             };
             let withAudio=option===1?"-with-audio":""
 
-            fetch(`http://localhost:3000/random-50-words${withAudio}`, options).then(response=>
+            fetch(`${import.meta.env.VITE_API_URL}/random-50-words${withAudio}`, options).then(response=>
                 response.json()
             ).then(data=> {
 
@@ -107,7 +105,7 @@ export default {
                 credentials: 'include'
             };
             if(this.user) {
-                fetch(`http://localhost:3000/increase-level/${id}`, options).then()
+                fetch(`${import.meta.env.VITE_API_URL}/increase-level/${id}`, options).then()
                 const $toast = useToast();
                 let toast = $toast.success('Слово переведено на вищий рівень');
             }
@@ -120,7 +118,8 @@ export default {
                 credentials: 'include'
             };
             if(this.user) {
-                fetch(`http://localhost:3000/decrease-level/${id}`, options).then()
+                console.log(this.words)
+                fetch(`${import.meta.env.VITE_API_URL}/decrease-level/${id}`, options).then()
                 const $toast = useToast();
                 let toast = $toast.error('Слово переведено на нижчий рівень');
 
@@ -137,7 +136,6 @@ export default {
             //increase level of this word if user didn't use a hint
             if(!this.hintWasUsed) {
                 this.increasedLevel++
-                console.log("переведено")
                 this.increaseLevel(id)
 
 
@@ -148,7 +146,6 @@ export default {
         wrongAnswer(id){
             this.decreasedLevel++
 
-            console.log("зменшено")
             this.decreaseLevel(id)
 
             this.hintWasUsed=false
@@ -166,7 +163,7 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    /*margin: 15px 0 0 0;*/
+    margin: 15px 0 0 0;
 }
 .pop-up-hide{
     opacity:0

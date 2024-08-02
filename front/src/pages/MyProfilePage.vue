@@ -46,29 +46,26 @@ export default {
                     ["Четвертий рівень"],
                 ]
             },
-            endRotation:15,
+            endRotation:0,
         }
     },
     mounted() {
-        // setTimeout(()=> /*to do: calculate percentage according to real progress*/ this.rotation = this.endRotation, 300)
-
     },
     methods:{
-      getUserScore(){
+      async getUserScore(){
           const options = {
               method: 'GET',
               mode:"cors",
               credentials: 'include'
           };
 
-          fetch(`http://localhost:3000/user-progress`, options).then(response=>
+
+          fetch(`${import.meta.env.VITE_API_URL}/user-progress`, options).then(response=>
               response.json()
           ).then(data=> {
-
                   this.percent=data.score
                   this.endRotation=180*data.score/100-90
                   setTimeout(()=>this.rotation = this.endRotation, 300)
-
               }
           )
       },
@@ -79,7 +76,7 @@ export default {
               credentials: 'include'
           };
 
-          fetch(`http://localhost:3000/all-words-with-levels`, options).then(response=>
+          fetch(`${import.meta.env.VITE_API_URL}/all-words-with-levels`, options).then(response=>
               response.json()
           ).then(data=> {
 
@@ -99,17 +96,15 @@ export default {
       }
     },
 
-    beforeMount() {
-        this.getUser().then(data => {
-            if(data=== null)
-                this.$router.push("/")
-            else{
-                this.user.login=data.login
-                this.getUserScore()
-                this.getUserWords()
-            }
-        })
-
+    async beforeMount() {
+        let data = await this.getUser()
+        if(data=== null)
+            this.$router.push("/")
+        else{
+            this.user.login=data.login
+            await this.getUserScore()
+            this.getUserWords()
+        }
     }
 }
 </script>

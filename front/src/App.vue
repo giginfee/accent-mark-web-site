@@ -20,9 +20,8 @@ export default {
         LeftBlock,
         WordList,Header,Logo,ProgressLine,WordCard,TrainingSection
     },beforeMount() {
-
         this.getUser().then(data => {
-            console.log(data)
+            // console.log(data)
             if(data!== null)
                 this.$store.dispatch('user', data.login)
         })
@@ -33,7 +32,6 @@ export default {
 
     },
     mounted() {
-
     },
     updated() {
     },
