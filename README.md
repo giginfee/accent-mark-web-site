@@ -17,8 +17,23 @@ Wait for a few minutes after accessing the web-site because server sleeps due to
 - **Front-end**: Vue.js
 - **Back-end**: Node.js, Express, MongoDB
 - **Deployment**: Netlify (Front-end), Render (Back-end)
+  
+## Deployment
 
-## Getting Started
+### Front-end
+
+The front-end is deployed on Netlify.
+
+- **Netlify URL**: [https://accent-mark-web-site.netlify.app/](https://accent-mark-web-site.netlify.app/)
+
+### Back-end
+
+The back-end is deployed on Render.
+
+- **Render URL**: [https://accent-mark-web-site.onrender.com/](https://accent-mark-web-site.onrender.com/)
+
+  
+## Clone repository
 
 ### Prerequisites
 
