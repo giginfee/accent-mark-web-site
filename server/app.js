@@ -17,11 +17,13 @@ const {resolve} = require("path");
 dotenv.config({ path:  './config.env'});
 
 
-
+app.enable('trust proxy');
 app.use(cors({
     origin: "https://master--accent-mark-web-site.netlify.app",
+    // origin: "http://localhost:5173",
     credentials: true,
     'exposedHeaders': ['Accept', "jwt"],
+    allowedHeaders:null
 }))
 app.use(compression())
 app.use(cookieParser())

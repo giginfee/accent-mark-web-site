@@ -41,7 +41,9 @@ module.exports.login = async (req, res) => {
             hashPassword.compare(password, user.password).then(auth=>{
                 if(auth) {
                     const TOKEN = jwt.createToken(login)
-                    res.cookie('jwt', TOKEN, {  maxAge: jwt.MAXAGE * 1000 });
+                    res.cookie('jwt', TOKEN, {
+                        maxAge:jwt.MAXAGE * 1000,
+                    });
                     res.setHeader('jwt', TOKEN);
                     res.status(200).send(`User ${login} was found`)
                 }else {
