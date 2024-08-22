@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "66acc31bac6c8cf42d878b7d",
+    "idWord": 219,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T11:29:30.967Z",
+    "level": 1
+  },
+  {
+    "_id": "66acc321ac6c8cf42d878b7e",
+    "idWord": 128,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T11:29:37.526Z",
+    "level": 1
+  },
+  {
+    "_id": "66acc323ac6c8cf42d878b7f",
+    "idWord": 20,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T11:29:39.799Z",
+    "level": 1
+  },
+  {
+    "_id": "66accb8b959a72fcce5fa605",
+    "idWord": 78,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:05:31.735Z",
+    "level": 1
+  },
+  {
+    "_id": "66accb97959a72fcce5fa606",
+    "idWord": 212,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:05:42.960Z",
+    "level": 1
+  },
+  {
+    "_id": "66accbc8959a72fcce5fa607",
+    "idWord": 178,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:06:32.511Z",
+    "level": 1
+  },
+  {
+    "_id": "66accbce959a72fcce5fa608",
+    "idWord": 202,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:06:38.831Z",
+    "level": 1
+  },
+  {
+    "_id": "66accbd0959a72fcce5fa609",
+    "idWord": 67,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:06:40.297Z",
+    "level": 1
+  },
+  {
+    "_id": "66accbd3959a72fcce5fa60a",
+    "idWord": 112,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:06:43.641Z",
+    "level": 1
+  },
+  {
+    "_id": "66accbd7959a72fcce5fa60b",
+    "idWord": 98,
+    "login": "admin123",
+    "nextShowDate": "2024-08-04T12:06:46.986Z",
+    "level": 1
+  }
+]

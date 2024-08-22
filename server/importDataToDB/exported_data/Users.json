@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "662271ebbaa1e36e3ba732ff",
+    "login": "admin",
+    "password": "$2b$10$f4gcQ89n.TcWvSTNK9.lVOMTVAobpS5GuDGWRPimAkkBzUC09QIdy"
+  },
+  {
+    "_id": "66acb5c07bcf846cfe346e8a",
+    "login": "admin123",
+    "password": "$2b$10$vbkYoWeVesScUqPuYTfp1OKxqaaVf6FunccOkiA3JyBgm1c7tLgDO"
+  }
+]

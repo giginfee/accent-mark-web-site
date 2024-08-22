@@ -1,0 +1,832 @@
+[
+  {
+    "_id": "661fff2e5644be0d88799484",
+    "idWord": 119,
+    "idRule": 1
+  },
+  {
+    "_id": "661fff2e5644be0d88799485",
+    "idWord": 97,
+    "idRule": 1
+  },
+  {
+    "_id": "661fff2e5644be0d88799486",
+    "idWord": 21,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d88799489",
+    "idWord": 89,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d88799492",
+    "idWord": 12,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d88799493",
+    "idWord": 43,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d88799494",
+    "idWord": 113,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d8879949d",
+    "idWord": 147,
+    "idRule": 7
+  },
+  {
+    "_id": "661fff2e5644be0d887994a7",
+    "idWord": 161,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994ae",
+    "idWord": 192,
+    "idRule": 2
+  },
+  {
+    "_id": "661fff2e5644be0d887994af",
+    "idWord": 188,
+    "idRule": 2
+  },
+  {
+    "_id": "661fff2e5644be0d887994b4",
+    "idWord": 65,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994b5",
+    "idWord": 94,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994bc",
+    "idWord": 117,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994be",
+    "idWord": 114,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994c0",
+    "idWord": 213,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994c2",
+    "idWord": 55,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994c9",
+    "idWord": 56,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994cf",
+    "idWord": 129,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d0",
+    "idWord": 150,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d1",
+    "idWord": 171,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d7",
+    "idWord": 98,
+    "idRule": 10
+  },
+  {
+    "_id": "661fff2e5644be0d887994d8",
+    "idWord": 83,
+    "idRule": 10
+  },
+  {
+    "_id": "661fff2e5644be0d887994da",
+    "idWord": 18,
+    "idRule": 11
+  },
+  {
+    "_id": "661fff2e5644be0d887994de",
+    "idWord": 19,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994f3",
+    "idWord": 1,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994fe",
+    "idWord": 126,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799504",
+    "idWord": 71,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d8879950c",
+    "idWord": 195,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799513",
+    "idWord": 158,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799518",
+    "idWord": 220,
+    "idRule": 16
+  },
+  {
+    "_id": "6620004b5644be0d8879951e",
+    "idWord": 179,
+    "idRule": 15
+  },
+  {
+    "_id": "6620030a5644be0d8879952a",
+    "idWord": 14,
+    "idRule": 13
+  },
+  {
+    "_id": "6620030a5644be0d88799530",
+    "idWord": 232,
+    "idRule": 13
+  },
+  {
+    "_id": "661fff2e5644be0d88799483",
+    "idWord": 185,
+    "idRule": 1
+  },
+  {
+    "_id": "661fff2e5644be0d88799487",
+    "idWord": 66,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d88799488",
+    "idWord": 86,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d8879948b",
+    "idWord": 133,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d8879948f",
+    "idWord": 135,
+    "idRule": 4
+  },
+  {
+    "_id": "661fff2e5644be0d88799491",
+    "idWord": 191,
+    "idRule": 4
+  },
+  {
+    "_id": "661fff2e5644be0d88799497",
+    "idWord": 224,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d88799498",
+    "idWord": 8,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d8879949b",
+    "idWord": 172,
+    "idRule": 6
+  },
+  {
+    "_id": "661fff2e5644be0d887994a0",
+    "idWord": 148,
+    "idRule": 7
+  },
+  {
+    "_id": "661fff2e5644be0d887994a1",
+    "idWord": 70,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994a2",
+    "idWord": 74,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994a5",
+    "idWord": 81,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994a6",
+    "idWord": 82,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994ad",
+    "idWord": 130,
+    "idRule": 2
+  },
+  {
+    "_id": "661fff2e5644be0d887994b1",
+    "idWord": 229,
+    "idRule": 2
+  },
+  {
+    "_id": "661fff2e5644be0d887994b2",
+    "idWord": 15,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994b3",
+    "idWord": 52,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994b7",
+    "idWord": 202,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994bd",
+    "idWord": 211,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994c5",
+    "idWord": 168,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994c8",
+    "idWord": 67,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994cb",
+    "idWord": 31,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994cd",
+    "idWord": 78,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d2",
+    "idWord": 234,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d4",
+    "idWord": 73,
+    "idRule": 10
+  },
+  {
+    "_id": "661fff2e5644be0d887994d5",
+    "idWord": 76,
+    "idRule": 10
+  },
+  {
+    "_id": "661fff2e5644be0d887994e3",
+    "idWord": 149,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e4",
+    "idWord": 102,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994ea",
+    "idWord": 39,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994eb",
+    "idWord": 45,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d887994f4",
+    "idWord": 109,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994f6",
+    "idWord": 233,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994f8",
+    "idWord": 13,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994fb",
+    "idWord": 54,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994fd",
+    "idWord": 90,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799500",
+    "idWord": 128,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799501",
+    "idWord": 132,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799508",
+    "idWord": 167,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d8879950d",
+    "idWord": 205,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d8879950e",
+    "idWord": 9,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d8879950f",
+    "idWord": 36,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799511",
+    "idWord": 105,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799512",
+    "idWord": 131,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799514",
+    "idWord": 181,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799515",
+    "idWord": 197,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799517",
+    "idWord": 210,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d88799519",
+    "idWord": 221,
+    "idRule": 16
+  },
+  {
+    "_id": "662000bc5644be0d88799522",
+    "idWord": 124,
+    "idRule": 15
+  },
+  {
+    "_id": "662002bd5644be0d88799526",
+    "idWord": 10,
+    "idRule": 18
+  },
+  {
+    "_id": "662002c95644be0d88799527",
+    "idWord": 207,
+    "idRule": 18
+  },
+  {
+    "_id": "6620095f5644be0d88799535",
+    "idWord": 183,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d88799482",
+    "idWord": 46,
+    "idRule": 1
+  },
+  {
+    "_id": "661fff2e5644be0d88799490",
+    "idWord": 225,
+    "idRule": 4
+  },
+  {
+    "_id": "661fff2e5644be0d88799495",
+    "idWord": 223,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d88799499",
+    "idWord": 112,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d8879949c",
+    "idWord": 170,
+    "idRule": 6
+  },
+  {
+    "_id": "661fff2e5644be0d8879949f",
+    "idWord": 151,
+    "idRule": 7
+  },
+  {
+    "_id": "661fff2e5644be0d887994a3",
+    "idWord": 75,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994a8",
+    "idWord": 125,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994ab",
+    "idWord": 193,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994b6",
+    "idWord": 144,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994b8",
+    "idWord": 228,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994b9",
+    "idWord": 63,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994ba",
+    "idWord": 111,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994bf",
+    "idWord": 212,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994c1",
+    "idWord": 29,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994c3",
+    "idWord": 101,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994c6",
+    "idWord": 169,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994c7",
+    "idWord": 146,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994cc",
+    "idWord": 59,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994ce",
+    "idWord": 121,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d3",
+    "idWord": 235,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d9",
+    "idWord": 2,
+    "idRule": 11
+  },
+  {
+    "_id": "661fff2e5644be0d887994db",
+    "idWord": 68,
+    "idRule": 11
+  },
+  {
+    "_id": "661fff2e5644be0d887994e0",
+    "idWord": 16,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e1",
+    "idWord": 33,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e2",
+    "idWord": 34,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e5",
+    "idWord": 154,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e6",
+    "idWord": 155,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994ec",
+    "idWord": 50,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d887994ed",
+    "idWord": 84,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d887994f1",
+    "idWord": 176,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d887994f2",
+    "idWord": 69,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d887994f5",
+    "idWord": 122,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994f7",
+    "idWord": 156,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994f9",
+    "idWord": 24,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994fa",
+    "idWord": 27,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994fc",
+    "idWord": 57,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d887994ff",
+    "idWord": 127,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799502",
+    "idWord": 3,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799503",
+    "idWord": 58,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799505",
+    "idWord": 72,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799506",
+    "idWord": 91,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799507",
+    "idWord": 110,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799509",
+    "idWord": 187,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d8879950a",
+    "idWord": 208,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799516",
+    "idWord": 201,
+    "idRule": 16
+  },
+  {
+    "_id": "661fff2e5644be0d8879951a",
+    "idWord": 231,
+    "idRule": 16
+  },
+  {
+    "_id": "662000915644be0d88799520",
+    "idWord": 104,
+    "idRule": 15
+  },
+  {
+    "_id": "6620030a5644be0d88799529",
+    "idWord": 5,
+    "idRule": 13
+  },
+  {
+    "_id": "6620030a5644be0d8879952b",
+    "idWord": 136,
+    "idRule": 13
+  },
+  {
+    "_id": "6620030a5644be0d8879952c",
+    "idWord": 139,
+    "idRule": 13
+  },
+  {
+    "_id": "6620030a5644be0d8879952d",
+    "idWord": 166,
+    "idRule": 13
+  },
+  {
+    "_id": "661fff2e5644be0d8879948a",
+    "idWord": 120,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d8879948c",
+    "idWord": 157,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d8879948d",
+    "idWord": 222,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d8879948e",
+    "idWord": 206,
+    "idRule": 3
+  },
+  {
+    "_id": "661fff2e5644be0d8879949a",
+    "idWord": 226,
+    "idRule": 5
+  },
+  {
+    "_id": "661fff2e5644be0d8879949e",
+    "idWord": 152,
+    "idRule": 7
+  },
+  {
+    "_id": "661fff2e5644be0d887994a4",
+    "idWord": 79,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994a9",
+    "idWord": 182,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994aa",
+    "idWord": 11,
+    "idRule": 8
+  },
+  {
+    "_id": "661fff2e5644be0d887994ac",
+    "idWord": 96,
+    "idRule": 2
+  },
+  {
+    "_id": "661fff2e5644be0d887994b0",
+    "idWord": 204,
+    "idRule": 2
+  },
+  {
+    "_id": "661fff2e5644be0d887994bb",
+    "idWord": 194,
+    "idRule": 9
+  },
+  {
+    "_id": "661fff2e5644be0d887994c4",
+    "idWord": 145,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994ca",
+    "idWord": 30,
+    "idRule": 17
+  },
+  {
+    "_id": "661fff2e5644be0d887994d6",
+    "idWord": 87,
+    "idRule": 10
+  },
+  {
+    "_id": "661fff2e5644be0d887994dc",
+    "idWord": 115,
+    "idRule": 11
+  },
+  {
+    "_id": "661fff2e5644be0d887994dd",
+    "idWord": 162,
+    "idRule": 11
+  },
+  {
+    "_id": "661fff2e5644be0d887994df",
+    "idWord": 20,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e7",
+    "idWord": 214,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e8",
+    "idWord": 215,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994e9",
+    "idWord": 38,
+    "idRule": 12
+  },
+  {
+    "_id": "661fff2e5644be0d887994ee",
+    "idWord": 85,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d887994ef",
+    "idWord": 88,
+    "idRule": 14
+  },
+  {
+    "_id": "661fff2e5644be0d8879950b",
+    "idWord": 190,
+    "idRule": 15
+  },
+  {
+    "_id": "661fff2e5644be0d88799510",
+    "idWord": 53,
+    "idRule": 16
+  },
+  {
+    "_id": "662000d75644be0d88799524",
+    "idWord": 199,
+    "idRule": 15
+  },
+  {
+    "_id": "6620030a5644be0d8879952e",
+    "idWord": 200,
+    "idRule": 13
+  },
+  {
+    "_id": "6620030a5644be0d8879952f",
+    "idWord": 227,
+    "idRule": 13
+  }
+]
