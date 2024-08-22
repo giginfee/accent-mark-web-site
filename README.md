@@ -66,16 +66,21 @@ The back-end is deployed on Render.
 
 1. **Set up environment variables:**
 
-   Create a `config.env` file in the `server` directory and add your environment variables:
+   *Server*
+   Create a `config.env` file in the `server` directory and add your environment variables. Example:
 
    ```env
    PORT=3000
    MONGO_URL=mongodb+srv://<USER>:<password>@cluster0.jxalnm2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
    MONGO_PASSWORD=******
    ```
-   *To get access to the database contact me directly*
 
-   Create a `.env` file in the `fron` directory and add your environment variables:
+   Create MongoDB Cluster and connect to it. 
+   Run `import_data` in 'importDataToDB' directory.
+
+   *Front*
+
+   Create a `.env` file in the `front` directory and add your environment variables:
 
    ```env
    VITE_API_URL=http://localhost:3000
